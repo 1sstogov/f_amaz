@@ -155,6 +155,17 @@ def acc_get_password(id: int):
             xprint(ex)
             return None
 
+def acc_set_password(id: int, password: str):
+    with db:
+        try:
+            acc = Account.get(Account.id == id)
+            acc.password = password
+            acc.status = "Set password"
+            acc.save()
+        except Exception as ex:
+            xprint(ex)
+            return None
+
 def accs_who_need():
     with db:
         try:
@@ -171,6 +182,16 @@ def accs_who_need():
                 }
                 accs_who_need.append(d)
             return accs_who_need
+        except Exception as ex:
+            xprint(ex)
+            return None
+            
+def acc_stop_work(id: int):
+    with db:
+        try:
+            acc = Account.get(Account.id == id)
+            acc.in_work = False
+            acc.save()
         except Exception as ex:
             xprint(ex)
             return None

@@ -1,3 +1,20 @@
+**email_status**=(success / error) - фильтрует сессии по статусу проверки email-а
+
+**auth_status**=(success / error) - фильтрует сессии по статусу аутентификации
+
+**verification_status**=(success / error) - аналогично. но по статусу верификации
+
+**session_status**=( needs email check / email checked / needs authentication / authenticated / needs verification / verificated / verification changed )
+
+needs email check  = Пользователь ввел почту
+email checked = Скрипт проверил почту, у пользователя высветился ввод пароля
+needs authentication = Пользователь ввел пароль
+authenticated = Скрипт проверил пароль, у пользователя высветилось поле ввода кода верификации илди выбор типа верификации
+needs verification = Пользовательвввел код верификации
+verificated = Скрипт проверил верификацию
+verification changed = Скрипт добавил аунтификатор
+
+
 {"id":43,"login":"api@gmail.com","password":null,"auth_status":null,"verification_type":null,"verification_code":null,"verification_status":null,"status":"needs email check","created_at":"2019-09-22T20:31:18.432Z","updated_at":"2019-09-22T20:31:18.432Z","email_status":null}]}
 
 fetch('https://amazone.online/api/v1/user_sessions/43/email_check_success', {

