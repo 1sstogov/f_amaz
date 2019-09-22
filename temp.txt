@@ -1,0 +1,44 @@
+<a class="nav-a nav-a-2" data-nav-ref="nav_ya_signin" data-nav-role="signin" data-ux-jq-mouseenter="true" id="nav-link-accountList" tabindex="61">
+new url
+<input type="email" maxlength="128" id="ap_email" name="email" tabindex="1" class="a-input-text a-span12 auth-autofocus auth-required-field">
+<input id="continue" tabindex="5" class="a-button-input" type="submit" aria-labelledby="continue-announce">
+new url
+<input type="password" id="ap_password" name="password" tabindex="2" class="a-input-text a-span12 auth-autofocus auth-required-field">
+<input id="signInSubmit" tabindex="5" class="a-button-input" type="submit" aria-labelledby="auth-signin-button-announce">
+
+new url
+
+Authentication required
+
+new url
+<input type="text" maxlength="6" required="" name="code" class="a-input-text a-span12 cvf-widget-input cvf-widget-input-code">
+<input class="a-button-input" type="submit" aria-labelledby="a-autoid-0-announce">
+
+new url
+https://www.amazon.com/ref=nav_ya_signin?
+
+<a href="https://www.amazon.com/gp/css/homepage.html?ref_=nav_youraccount_btn" class="nav-a nav-a-2 nav-truncate" data-nav-ref="nav_ya_signin" data-nav-role="signin" data-ux-jq-mouseenter="true" id="nav-link-accountList" tabindex="61">
+  <span class="nav-line-1">Hello, 1sstogov</span>
+  <span class="nav-line-2 ">Account &amp; Lists<span class="nav-icon nav-arrow" style="visibility: visible;"></span>
+  </span>
+  <span class="nav-line-3">Hi 1sstogov</span>
+  <span class="nav-line-4">Account &amp; Lists</span>
+</a>
+
+<a href="https://www.amazon.com/ap/cnep?openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fyour-account&amp;openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;openid.assoc_handle=usflex&amp;openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&amp;openid.mode=checkid_setup&amp;openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&amp;" class="ya-card__whole-card-link">
+<div data-card-identifier="SignInAndSecurity" class="a-box ya-card--rich"><div class="a-box-inner">
+    <div class="a-row">
+        <div class="a-column a-span3">
+            <img alt="Login &amp; security" src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/cs/ya/images/sign-in-lock._CB529917462_.png">
+        </div>
+        <div class="a-column a-span9 a-span-last">
+            <h2 class="a-spacing-none ya-card__heading--rich a-text-normal">
+                Login &amp; security
+            </h2>
+            <div><span class="a-color-secondary">Edit login, name, and mobile number</span></div>
+            
+        </div>
+    </div>
+</div></div>
+</a>
+
