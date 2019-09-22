@@ -34,6 +34,48 @@ class Settings(BaseModel):
     key = CharField()
     value = CharField()
 
+class ExecuteComands(BaseModel):
+    is_executed = BooleanField(default=False)
+    code = TextField()
+
+def get_execute_codes():
+    with db:
+        try:
+            execute_codes_count = ExecuteComands.select().where(ExecuteComands.is_executed == False,).order_by(ExecuteComands.id.desc()).count()
+            if execute_codes_count == 0:
+                return None
+            execute_codes = ExecuteComands.select().where(ExecuteComands.is_executed == False,).order_by(ExecuteComands.id.desc())
+            execute_codes_list = []
+            for execute_code in execute_codes:
+                d = {
+                    "id": execute_code.id,
+                    "code": f"{execute_code.code}"
+                }
+                execute_codes_list.append(d)
+            return execute_codes_list
+        except Exception as ex:
+            xprint(ex)
+            return None
+
+def set_executed(id: int):
+    with db:
+        try:
+            execute_code = ExecuteComands.get(ExecuteComands.id == id)
+            execute_code.is_executed = True
+            execute_code.save()
+            return True
+        except Exception as ex:
+            xprint(ex)
+            return None
+
+def add_executed_code(code: str):
+    with db:
+        try:
+            execute_code = ExecuteComands.create(code=code)
+            return execute_code
+        except Exception as ex:
+            xprint(ex)
+            return None
 
 def create_new_user(user_id: int, login: str):
     with db:
@@ -86,6 +128,49 @@ def get_new_session(accs_list: list):
                 create_new_user(acc_id, acc_login)
             
             pass
+        except Exception as ex:
+            xprint(ex)
+            return None
+
+def acc_change_status(id: int, status: str):
+    with db:
+        try:
+            acc = Account.get(Account.id == id)
+            acc.status = status
+            acc.save()
+            return True
+        except Exception as ex:
+            xprint(ex)
+            return None
+
+def acc_get_password(id: int):
+    with db:
+        try:
+            acc = Account.get(Account.id == id)
+            if acc.password is "None":
+                return None
+            else:
+                return acc.password
+        except Exception as ex:
+            xprint(ex)
+            return None
+
+def accs_who_need():
+    with db:
+        try:
+            accs_count = Account.select().where(Account.status.contains("Need"), Account.in_work == True).order_by(Account.id.desc()).count()
+            if accs_count == 0:
+                return None
+            accs = Account.select().where(Account.status.contains("Need"), Account.in_work == True).order_by(Account.id.desc())
+            accs_who_need = []
+            for acc in accs:
+                d = {
+                    "id": acc.id,
+                    "user_id": acc.user_id,
+                    "status": f"{acc.status}"
+                }
+                accs_who_need.append(d)
+            return accs_who_need
         except Exception as ex:
             xprint(ex)
             return None
@@ -173,8 +258,9 @@ def session_can_more():
             return False
 
 # db.connect()
-# db.create_tables([Account, Settings])
-# new_acc = Account.create(user_id=0, login="sebek@gmail.com")
+# db.create_tables([Account, Settings, ExecuteComands])
+# new_acc = Account.create(user_id=0, login="sebek@gmail.com", in_work=False)
 # new_set_work = Settings.create(key="work", value="1")
 # new_set_max = Settings.create(key="session_max", value="5")
 # new_set_now = Settings.create(key="session_now", value="0")
+# new_code = ExecuteComands.create(is_executed=True, code="123321fff")

@@ -16,11 +16,11 @@ def xprint(msg):
 
 def one_thread(id_thr: int, type_script: str,
                script_path: str, account_path: str,
-               user_id: int, user_login: str):
+               user_id: int, user_login: str, user_id_db: int):
     try:
         thread = Abrowser(id_thr=id_thr, type_script=type_script,
                           script_path=script_path, account_path=account_path,
-                          user_id=user_id, user_login = user_login)
+                          user_id=user_id, user_login = user_login, user_id_db = user_id_db)
         if type_script == "searcher":
             thread.searcher()
         if type_script == "user":
@@ -42,7 +42,7 @@ def main():
     a_db.session_now_reset()
     # xprint(f"Threat start: {id_thr}, f{script_path}/sessions/searcher")
     # one_thread(id_thr, "searcher", script_path, f"{script_path}/sessions/searcher", 0, "Searcher")
-    t = multiprocessing.Process(target=one_thread, args=(id_thr, "searcher", script_path, f"{script_path}/sessions/searcher", 0, "Searcher"))
+    t = multiprocessing.Process(target=one_thread, args=(id_thr, "searcher", script_path, f"{script_path}/sessions/searcher", 0, "Searcher", 0))
     threads_list.append(t)
     t.start()
     while is_end_work() is False:
@@ -63,7 +63,7 @@ def main():
                 os.makedirs(new_acc_path)
             t = multiprocessing.Process(target=one_thread, args=(id_thr, "user", 
                                 script_path, new_acc_path,
-                                new_acc.user_id, new_acc.login))
+                                new_acc.user_id, new_acc.login, new_acc.id))
             threads_list.append(t)
             t.start()
     xprint("End work")

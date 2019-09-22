@@ -1,0 +1,734 @@
+1. To sign in
+<a href="https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&amp;openid.return_to=https%3A%2F%2Fwww.amazon.com%2F%3Fref_%3Dnav_ya_signin&amp;openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;openid.assoc_handle=usflex&amp;openid.mode=checkid_setup&amp;openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&amp;" class="nav-a nav-a-2" data-nav-ref="nav_ya_signin" data-nav-role="signin" data-ux-jq-mouseenter="true" id="nav-link-accountList" tabindex="61">
+  <span class="nav-line-1">Hello, Sign in</span>
+  <span class="nav-line-2 ">Account &amp; Lists<span class="nav-icon nav-arrow" style="visibility: visible;"></span>
+  </span>
+  <span class="nav-line-3">Sign in</span>
+  <span class="nav-line-4">Account &amp; Lists</span>
+</a>
+
+2. Email
+https://www.amazon.com/ap/signin?openid.pape.max_auth_age=0&openid.return_to=https%3A%2F%2Fwww.amazon.com%2F%3Fref_%3Dnav_ya_signin&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.assoc_handle=usflex&openid.mode=checkid_setup&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&
+
+<input type="email" maxlength="128" id="ap_email" name="email" tabindex="1" class="a-input-text a-span12 auth-autofocus auth-required-field">
+<input id="continue" tabindex="5" class="a-button-input" type="submit" aria-labelledby="continue-announce">
+
+3. Password
+https://www.amazon.com/ap/signin
+
+<input type="password" id="ap_password" name="password" tabindex="2" class="a-input-text a-span12 auth-autofocus auth-required-field">
+<input type="checkbox" name="rememberMe" value="true" tabindex="4">
+input id="signInSubmit" tabindex="5" class="a-button-input" type="submit" aria-labelledby="auth-signin-button-announce">
+
+4. Authentication required (Email or Phone)
+https://www.amazon.com/ap/cvf/request?arb=f6f2fed5-5cdc-45e2-bf98-00c72426f410
+
+<form name="claimspicker" method="post" action="verify" class="cvf-widget-form cvf-widget-form-claimspicker a-spacing-none">
+   <input type="hidden" name="clientContext" value="133-3495915-6740328" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.pape.max_auth_age" value="0" class="cvf-widget-hidden-fields"><input type="hidden" name="use_global_authentication" value="false" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.return_to" value="https://www.amazon.com/?ref_=nav_ya_signin" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.identity" value="http://specs.openid.net/auth/2.0/identifier_select" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.assoc_handle" value="usflex" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.mode" value="checkid_setup" class="cvf-widget-hidden-fields"><input type="hidden" name="pageId" value="usflex" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.claimed_id" value="http://specs.openid.net/auth/2.0/identifier_select" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0" class="cvf-widget-hidden-fields"><input type="hidden" name="verifyToken" value="s|b4ee1eaa-5844-3d12-8213-ccaee4766644" class="cvf-widget-hidden-fields">
+   <div class="a-row a-spacing-small">
+      <h1>Authentication required</h1>
+   </div>
+   <!-- There are multiple challenge channels available. -->
+   <div class="a-row">We will send you a One Time Password (OTP) to authenticate your request.</div>
+   <p class="a-spacing-none a-spacing-top-extra-large"><label class="a-form-label">Send One Time Password (OTP):</label></p>
+   <div data-a-input-name="option" class="a-radio cvf-widget-input a-spacing-top-base"><label><input type="radio" name="option" value="sms" checked=""><i class="a-icon a-icon-radio"></i><span class="a-label a-radio-label">As a text message - +380*******30</span></label></div>
+   <div data-a-input-name="option" class="a-radio cvf-widget-input a-spacing-top-base"><label><input type="radio" name="option" value="email"><i class="a-icon a-icon-radio"></i><span class="a-label a-radio-label">In an email - 1******v@gmail.com</span></label></div>
+   <p></p>
+   <div class="a-section a-spacing-top-extra-large"><span class="a-button a-button-span12 a-button-primary cvf-widget-btn" id="a-autoid-0"><span class="a-button-inner"><input id="continue" tabindex="3" class="a-button-input" type="submit" aria-labelledby="a-autoid-0-announce"><span class="a-button-text" aria-hidden="true" id="a-autoid-0-announce">Send OTP</span></span></span></div>
+</form>
+
+5.1. Authentication required CODE Email
+https://www.amazon.com/ap/cvf/verify
+
+<form method="post" action="verify" class="cvf-widget-form fwcim-form a-spacing-none" data-fwcim-id="ab888af2">
+   <div class="a-row a-spacing-small">
+      <div class="a-row a-spacing-small">
+         <h1>Authentication required</h1>
+      </div>
+      <div class="a-row a-spacing-none">      <span> </span>
+         <span>One Time Password (OTP) sent to 1******v@gmail.com. </span>
+         <span>Please enter it below. </span>
+      </div>
+   </div>
+   <div class="a-row a-spacing-small">
+      <div class="a-row a-spacing-micro cvf-widget-input-code-label">Enter OTP</div>
+      <input type="text" maxlength="6" required="" name="code" class="a-input-text a-span12 cvf-widget-input cvf-widget-input-code">
+   </div>
+   <div class="a-row a-spacing-micro">
+      <script>
+         P.when("A", "codeResendTimer", "ready").execute(function(A, codeResendTimer) {
+          	A.$(document).ready(function() {
+          	   var timer = codeResendTimer.createTimer(0, 'A message with a One Time Password (OTP) has been sent to', "You can now request a new code if needed.");
+          	 });
+          });
+      </script>
+   </div>
+   <div class="a-row a-spacing-small"><span class="a-button a-button-span12 a-button-primary cvf-widget-btn cvf-widget-btn-verify" id="a-autoid-0"><span class="a-button-inner"><input class="a-button-input" type="submit" aria-labelledby="a-autoid-0-announce"><span class="a-button-text" aria-hidden="true" id="a-autoid-0-announce">Continue</span></span></span></div>
+   <div class="a-section a-spacing-none a-spacing-top-large a-text-center cvf-widget-section-js"><a class="a-link-normal cvf-widget-btn cvf-widget-link-resend cvf-widget-link-disable-target" href="#">        Resend OTP
+      </a>
+   </div>
+   <input type="hidden" name="action" value="code" class="cvf-widget-hidden-fields">
+   <input type="hidden" name="clientContext" value="133-3495915-6740328" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.pape.max_auth_age" value="0" class="cvf-widget-hidden-fields"><input type="hidden" name="use_global_authentication" value="false" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.return_to" value="https://www.amazon.com/?ref_=nav_ya_signin" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.identity" value="http://specs.openid.net/auth/2.0/identifier_select" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.assoc_handle" value="usflex" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.mode" value="checkid_setup" class="cvf-widget-hidden-fields"><input type="hidden" name="pageId" value="usflex" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.claimed_id" value="http://specs.openid.net/auth/2.0/identifier_select" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0" class="cvf-widget-hidden-fields"><input type="hidden" name="verifyToken" value="s|b4ee1eaa-5844-3d12-8213-ccaee4766644" class="cvf-widget-hidden-fields">
+</form>
+
+5.2. Authentication required CODE Phone
+<form method="post" action="verify" class="cvf-widget-form fwcim-form a-spacing-none" data-fwcim-id="1f83a404">
+   <div class="a-row a-spacing-small">
+      <div class="a-row a-spacing-small">
+         <h1>Authentication required</h1>
+      </div>
+      <div class="a-row a-spacing-none">      <span> </span>
+         <span>One Time Password (OTP) sent to +380*******30. </span>
+         <span>Please enter it below. </span>
+      </div>
+   </div>
+   <div class="a-row a-spacing-small">
+      <div class="a-row a-spacing-micro cvf-widget-input-code-label">Enter OTP</div>
+      <input type="text" maxlength="6" required="" name="code" class="a-input-text a-span12 cvf-widget-input cvf-widget-input-code">
+   </div>
+   <div class="a-row a-spacing-micro">
+      <script>
+         P.when("A", "codeResendTimer", "ready").execute(function(A, codeResendTimer) {
+          	A.$(document).ready(function() {
+          	   var timer = codeResendTimer.createTimer(0, 'A message with a One Time Password (OTP) has been sent to', "You can now request a new code if needed.");
+          	 });
+          });
+      </script>
+   </div>
+   <div class="a-row a-spacing-small"><span class="a-button a-button-span12 a-button-primary cvf-widget-btn cvf-widget-btn-verify" id="a-autoid-0"><span class="a-button-inner"><input class="a-button-input" type="submit" aria-labelledby="a-autoid-0-announce"><span class="a-button-text" aria-hidden="true" id="a-autoid-0-announce">Continue</span></span></span></div>
+   <div class="a-section a-spacing-none a-spacing-top-large a-text-center cvf-widget-section-js"><a class="a-link-normal cvf-widget-btn cvf-widget-link-resend cvf-widget-link-disable-target" href="#">        Resend OTP
+      </a>
+   </div>
+   <input type="hidden" name="action" value="code" class="cvf-widget-hidden-fields">
+   <input type="hidden" name="clientContext" value="130-7899318-2522251" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.pape.max_auth_age" value="0" class="cvf-widget-hidden-fields"><input type="hidden" name="use_global_authentication" value="false" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.return_to" value="https://www.amazon.com/ref=nav_signin" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.identity" value="http://specs.openid.net/auth/2.0/identifier_select" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.assoc_handle" value="usflex" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.mode" value="checkid_setup" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.ns.pape" value="http://specs.openid.net/extensions/pape/1.0" class="cvf-widget-hidden-fields"><input type="hidden" name="pageId" value="usflex" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.claimed_id" value="http://specs.openid.net/auth/2.0/identifier_select" class="cvf-widget-hidden-fields"><input type="hidden" name="ignoreAuthState" value="1" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.ns" value="http://specs.openid.net/auth/2.0" class="cvf-widget-hidden-fields"><input type="hidden" name="verifyToken" value="s|1dfdf1d3-dd0e-3618-871c-e65720f4d9bb" class="cvf-widget-hidden-fields">
+</form>
+
+6. To Your Account
+https://www.amazon.com/?ref_=nav_ya_signin&
+
+<a href="https://www.amazon.com/gp/css/homepage.html?ref_=nav_youraccount_btn" class="nav-a nav-a-2 nav-truncate" data-nav-ref="nav_ya_signin" data-nav-role="signin" data-ux-jq-mouseenter="true" id="nav-link-accountList" tabindex="61">
+<span class="nav-line-1">Hello, 1sstogov</span>
+<span class="nav-line-2 ">Account &amp; Lists<span class="nav-icon nav-arrow" style="visibility: visible;"></span>
+</span>
+<span class="nav-line-3">Hi 1sstogov</span>
+<span class="nav-line-4">Account &amp; Lists</span>
+</a>
+
+7. To Login & security
+<a href="https://www.amazon.com/ap/cnep?openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fyour-account&amp;openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;openid.assoc_handle=usflex&amp;openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&amp;openid.mode=checkid_setup&amp;openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&amp;" class="ya-card__whole-card-link">
+   <div data-card-identifier="SignInAndSecurity" class="a-box ya-card--rich">
+      <div class="a-box-inner">
+         <div class="a-row">
+            <div class="a-column a-span3">
+               <img alt="Login &amp; security" src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/cs/ya/images/sign-in-lock._CB529917462_.png">
+            </div>
+            <div class="a-column a-span9 a-span-last">
+               <h2 class="a-spacing-none ya-card__heading--rich a-text-normal">
+                  Login &amp; security
+               </h2>
+               <div><span class="a-color-secondary">Edit login, name, and mobile number</span></div>
+            </div>
+         </div>
+      </div>
+   </div>
+</a>
+
+8. To Two-Step Verification (2SV) Settings:
+<div class="a-section">
+   <div class="a-box a-vertical">
+      <div class="a-box-inner a-padding-none">
+         <ul class="a-unordered-list a-nostyle a-box-list">
+            <li>
+               <span class="a-list-item">
+                  <!-- Set in request scope so that this variable is available to to CNEPMenuItem.jsp -->
+                  <div class="a-section a-padding-medium">
+                     <form id="cnep_1a_name_form" method="get" action="">
+                        <input type="hidden" name="appActionToken" value="G3ROEr9iA3wlRCXsMZxBhZWwHGQj3D"><input type="hidden" name="appAction" value="CNEP_NAME">
+                        <input type="hidden" name="openid.return_to" value="ape:aHR0cHM6Ly93d3cuYW1hem9uLmNvbS95b3VyLWFjY291bnQ=">
+                        <input type="hidden" name="prevRID" value="ape:WTUyM0dFNEtLOFc1VDBKRDA2UDI=">
+                        <input type="hidden" name="email" value="ape:MXNzdG9nb3ZAZ21haWwuY29t">
+                        <input type="hidden" name="workflowState" value="eyJ6aXAiOiJERUYiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiQTI1NktXIn0.C-ycBEgTkFHKo3H8Ld8boBh-1gQLMrudkrzMlNIvbHJz_5qHZgDo5A.KFKszUWlC-C0GcCF.2PFcM79E0MDTdKEGOZfksH7j351EDf9mks-lGeJU5MFnvB74TXTnvezax59G71CLsV0Q03MXuxr8w3SF77z9KrJu40cHvHmqDJZt6haNbXa7G47QkakEtIh4fHmtDpD3DwaHaEJOLMUSRm5iEIut4165KpUR16mBrEkER7nzFprmzL1QcpKbAuKqKIdwkUN6c3ep0i-bTcRl-gTi1M4yP6OjWUDoSGKosswEH9UlfUvN2jq_d7SO1gvZvYBKh2878cowIJeQ5MLdIyqlzlzzTnodGkZgj40KRc4lCkj_IejU.WnEaB5h39RJsCLhrYECnhQ">
+                        <div class="a-fixed-right-grid">
+                           <div class="a-fixed-right-grid-inner" style="padding-right:70px">
+                              <div class="a-fixed-right-grid-col a-col-left" style="padding-right:5%;float:left;">
+                                 <div class="a-row">
+                                    <span class="a-text-bold">
+                                    Name:
+                                    </span>
+                                 </div>
+                                 <div class="a-row">
+                                    1sstogov
+                                 </div>
+                              </div>
+                              <div class="a-fixed-right-grid-col a-col-right" style="width:70px;margin-right:-70px;float:left;">
+                                 <div class="a-row">
+                                    <span class="a-button a-button-span12 a-button-base" id="a-autoid-0"><span class="a-button-inner"><input id="auth-cnep-edit-name-button" class="a-button-input" type="submit" aria-labelledby="a-autoid-0-announce"><span class="a-button-text" aria-hidden="true" id="a-autoid-0-announce">
+                                    Edit
+                                    </span></span></span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </span>
+            </li>
+            <li>
+               <span class="a-list-item">
+                  <div class="a-section a-padding-medium">
+                     <form id="cnep_1a_email_form" method="get" action="https://www.amazon.com/ap/cnep">
+                        <input type="hidden" name="appActionToken" value="J4qq88XD7YddkhT6dpeMI5Kfj2FgUj3D"><input type="hidden" name="appAction" value="CNEP_EMAIL">
+                        <input type="hidden" name="openid.return_to" value="ape:aHR0cHM6Ly93d3cuYW1hem9uLmNvbS95b3VyLWFjY291bnQ=">
+                        <input type="hidden" name="prevRID" value="ape:WTUyM0dFNEtLOFc1VDBKRDA2UDI=">
+                        <input type="hidden" name="email" value="ape:MXNzdG9nb3ZAZ21haWwuY29t">
+                        <input type="hidden" name="workflowState" value="eyJ6aXAiOiJERUYiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiQTI1NktXIn0.C-ycBEgTkFHKo3H8Ld8boBh-1gQLMrudkrzMlNIvbHJz_5qHZgDo5A.KFKszUWlC-C0GcCF.2PFcM79E0MDTdKEGOZfksH7j351EDf9mks-lGeJU5MFnvB74TXTnvezax59G71CLsV0Q03MXuxr8w3SF77z9KrJu40cHvHmqDJZt6haNbXa7G47QkakEtIh4fHmtDpD3DwaHaEJOLMUSRm5iEIut4165KpUR16mBrEkER7nzFprmzL1QcpKbAuKqKIdwkUN6c3ep0i-bTcRl-gTi1M4yP6OjWUDoSGKosswEH9UlfUvN2jq_d7SO1gvZvYBKh2878cowIJeQ5MLdIyqlzlzzTnodGkZgj40KRc4lCkj_IejU.WnEaB5h39RJsCLhrYECnhQ">
+                        <div class="a-fixed-right-grid">
+                           <div class="a-fixed-right-grid-inner" style="padding-right:70px">
+                              <div class="a-fixed-right-grid-col a-col-left" style="padding-right:5%;float:left;">
+                                 <div class="a-row">
+                                    <span class="a-text-bold">
+                                    Email:
+                                    </span>
+                                 </div>
+                                 <div class="a-row">
+                                    1sstogov@gmail.com
+                                 </div>
+                              </div>
+                              <div class="a-fixed-right-grid-col a-col-right" style="width:70px;margin-right:-70px;float:left;">
+                                 <div class="a-row">
+                                    <span class="a-button a-button-span12 a-button-base" id="a-autoid-1"><span class="a-button-inner"><input id="auth-cnep-edit-email-button" class="a-button-input" type="submit" aria-labelledby="a-autoid-1-announce"><span class="a-button-text" aria-hidden="true" id="a-autoid-1-announce">
+                                    Edit
+                                    </span></span></span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </span>
+            </li>
+            <li>
+               <span class="a-list-item">
+                  <div class="a-section a-padding-medium">
+                     <form id="cnep_1a_mobile_phone_form" method="get" action="https://www.amazon.com/ap/profile/mobilephone">
+                        <input type="hidden" name="appActionToken" value="tNsSZ6FgmQ7edj2BshiMuGsnSMbT4j3D"><input type="hidden" name="appAction" value="CHANGE_MOBILE_PHONE">
+                        <input type="hidden" name="openid.return_to" value="ape:aHR0cHM6Ly93d3cuYW1hem9uLmNvbS95b3VyLWFjY291bnQ=">
+                        <input type="hidden" name="prevRID" value="ape:WTUyM0dFNEtLOFc1VDBKRDA2UDI=">
+                        <input type="hidden" name="email" value="ape:MXNzdG9nb3ZAZ21haWwuY29t">
+                        <input type="hidden" name="workflowState" value="eyJ6aXAiOiJERUYiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiQTI1NktXIn0.C-ycBEgTkFHKo3H8Ld8boBh-1gQLMrudkrzMlNIvbHJz_5qHZgDo5A.KFKszUWlC-C0GcCF.2PFcM79E0MDTdKEGOZfksH7j351EDf9mks-lGeJU5MFnvB74TXTnvezax59G71CLsV0Q03MXuxr8w3SF77z9KrJu40cHvHmqDJZt6haNbXa7G47QkakEtIh4fHmtDpD3DwaHaEJOLMUSRm5iEIut4165KpUR16mBrEkER7nzFprmzL1QcpKbAuKqKIdwkUN6c3ep0i-bTcRl-gTi1M4yP6OjWUDoSGKosswEH9UlfUvN2jq_d7SO1gvZvYBKh2878cowIJeQ5MLdIyqlzlzzTnodGkZgj40KRc4lCkj_IejU.WnEaB5h39RJsCLhrYECnhQ">
+                        <input type="hidden" name="referringAppAction" value="CNEP">
+                        <div class="a-fixed-right-grid">
+                           <div class="a-fixed-right-grid-inner" style="padding-right:70px">
+                              <div class="a-fixed-right-grid-col a-col-left" style="padding-right:5%;float:left;">
+                                 <div class="a-row">
+                                    <span class="a-text-bold">
+                                    Mobile Phone Number:
+                                    </span>
+                                 </div>
+                                 <div class="a-row">
+                                    +380966713030
+                                 </div>
+                              </div>
+                              <div class="a-fixed-right-grid-col a-col-right" style="width:70px;margin-right:-70px;float:left;">
+                                 <div class="a-row">
+                                    <span class="a-button a-button-span12 a-button-base" id="a-autoid-2"><span class="a-button-inner"><input id="auth-cnep-edit-phone-button" class="a-button-input" type="submit" aria-labelledby="a-autoid-2-announce"><span class="a-button-text" aria-hidden="true" id="a-autoid-2-announce">
+                                    Edit
+                                    </span></span></span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </span>
+            </li>
+            <li>
+               <span class="a-list-item">
+                  <div class="a-section a-padding-medium">
+                     <form id="cnep_1a_password_form" method="get" action="">
+                        <input type="hidden" name="appActionToken" value="aTvqIxIQ7QAQNeCgb4ZOzDiva6Ej3D"><input type="hidden" name="appAction" value="CNEP_PWD">
+                        <input type="hidden" name="openid.return_to" value="ape:aHR0cHM6Ly93d3cuYW1hem9uLmNvbS95b3VyLWFjY291bnQ=">
+                        <input type="hidden" name="prevRID" value="ape:WTUyM0dFNEtLOFc1VDBKRDA2UDI=">
+                        <input type="hidden" name="email" value="ape:MXNzdG9nb3ZAZ21haWwuY29t">
+                        <input type="hidden" name="workflowState" value="eyJ6aXAiOiJERUYiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiQTI1NktXIn0.C-ycBEgTkFHKo3H8Ld8boBh-1gQLMrudkrzMlNIvbHJz_5qHZgDo5A.KFKszUWlC-C0GcCF.2PFcM79E0MDTdKEGOZfksH7j351EDf9mks-lGeJU5MFnvB74TXTnvezax59G71CLsV0Q03MXuxr8w3SF77z9KrJu40cHvHmqDJZt6haNbXa7G47QkakEtIh4fHmtDpD3DwaHaEJOLMUSRm5iEIut4165KpUR16mBrEkER7nzFprmzL1QcpKbAuKqKIdwkUN6c3ep0i-bTcRl-gTi1M4yP6OjWUDoSGKosswEH9UlfUvN2jq_d7SO1gvZvYBKh2878cowIJeQ5MLdIyqlzlzzTnodGkZgj40KRc4lCkj_IejU.WnEaB5h39RJsCLhrYECnhQ">
+                        <div class="a-fixed-right-grid">
+                           <div class="a-fixed-right-grid-inner" style="padding-right:70px">
+                              <div class="a-fixed-right-grid-col a-col-left" style="padding-right:5%;float:left;">
+                                 <div class="a-row">
+                                    <span class="a-text-bold">
+                                    Password:
+                                    </span>
+                                 </div>
+                                 <div class="a-row">
+                                    ********
+                                 </div>
+                              </div>
+                              <div class="a-fixed-right-grid-col a-col-right" style="width:70px;margin-right:-70px;float:left;">
+                                 <div class="a-row">
+                                    <span class="a-button a-button-span12 a-button-base" id="a-autoid-3"><span class="a-button-inner"><input id="auth-cnep-edit-password-button" class="a-button-input" type="submit" aria-labelledby="a-autoid-3-announce"><span class="a-button-text" aria-hidden="true" id="a-autoid-3-announce">
+                                    Edit
+                                    </span></span></span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </span>
+            </li>
+            <li>
+               <span class="a-list-item">
+                  <div class="a-section a-padding-medium">
+                     <form method="get" action="https://www.amazon.com/a/settings/approval">
+                        <input type="hidden" name="appActionToken" value="uIVDLF4BOtIO664lshcc8dCvbH8j3D"><input type="hidden" name="appAction" value="">
+                        <input type="hidden" name="openid.return_to" value="ape:aHR0cHM6Ly93d3cuYW1hem9uLmNvbS95b3VyLWFjY291bnQ=">
+                        <input type="hidden" name="prevRID" value="ape:WTUyM0dFNEtLOFc1VDBKRDA2UDI=">
+                        <input type="hidden" name="email" value="ape:MXNzdG9nb3ZAZ21haWwuY29t">
+                        <input type="hidden" name="workflowState" value="eyJ6aXAiOiJERUYiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiQTI1NktXIn0.C-ycBEgTkFHKo3H8Ld8boBh-1gQLMrudkrzMlNIvbHJz_5qHZgDo5A.KFKszUWlC-C0GcCF.2PFcM79E0MDTdKEGOZfksH7j351EDf9mks-lGeJU5MFnvB74TXTnvezax59G71CLsV0Q03MXuxr8w3SF77z9KrJu40cHvHmqDJZt6haNbXa7G47QkakEtIh4fHmtDpD3DwaHaEJOLMUSRm5iEIut4165KpUR16mBrEkER7nzFprmzL1QcpKbAuKqKIdwkUN6c3ep0i-bTcRl-gTi1M4yP6OjWUDoSGKosswEH9UlfUvN2jq_d7SO1gvZvYBKh2878cowIJeQ5MLdIyqlzlzzTnodGkZgj40KRc4lCkj_IejU.WnEaB5h39RJsCLhrYECnhQ">
+                        <input type="hidden" name="referringAppAction" value="CNEP">
+                        <div class="a-fixed-right-grid">
+                           <div class="a-fixed-right-grid-inner" style="padding-right:70px">
+                              <div class="a-fixed-right-grid-col a-col-left" style="padding-right:5%;float:left;">
+                                 <div class="a-row">
+                                    <span class="a-text-bold">
+                                    Two-Step Verification (2SV) Settings:
+                                    </span>
+                                 </div>
+                                 <div class="a-row">
+                                    <span class="a-color-secondary">
+                                    Manage your Two Step Verification (2SV) Authenticators
+                                    </span>
+                                 </div>
+                              </div>
+                              <div class="a-fixed-right-grid-col a-col-right" style="width:70px;margin-right:-70px;float:left;">
+                                 <div class="a-row">
+                                    <span class="a-button a-button-span12 a-button-base" id="a-autoid-4"><span class="a-button-inner"><input id="auth-cnep-advanced-security-settings-button" class="a-button-input" type="submit" aria-labelledby="a-autoid-4-announce"><span class="a-button-text" aria-hidden="true" id="a-autoid-4-announce">
+                                    Edit
+                                    </span></span></span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </span>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div class="a-section a-spacing-top-base a-padding-small">
+      <div class="a-row">
+         <div class="a-column a-span12 a-span-last">
+            <span class="a-button a-button-primary" id="a-autoid-5"><span class="a-button-inner"><a id="auth-cnep-done-button" href="https://www.amazon.com/your-account" class="a-button-text" role="button">
+            Done
+            </a></span></span>
+         </div>
+      </div>
+   </div>
+</div>
+
+9. Add new phone or Authenticator App
+<a id="sia-settings-add-backup-link" class="a-link-normal" href="/a/settings/approval/addbackup">Add new phone or Authenticator App</a>
+
+10. Add backup method (Authenticator App)
+<div id="sia-select-otp-device-accordion" data-a-accordion-name="sia-otp-accordion" class="a-box-group a-accordion" role="">
+   <div class="a-box" data-a-accordion-row-name="sia-otp-accordion-phone">
+      <div class="a-box-inner a-accordion-row-container">
+         <div class="a-accordion-row-a11y" role="radio" aria-checked="false" aria-expanded="false">
+            <a id="sia-otp-accordion-phone-header" data-action="a-accordion" class="a-accordion-row a-declarative" href="#" aria-label="">
+               <i class="a-icon a-accordion-radio a-icon-radio-inactive"></i>
+               <h5>
+                  <!-- Params
+                     allowFormat: Boolean
+                     -->
+                  <span class="a-size-medium a-text-bold">Text message (SMS) </span><span class="a-letter-space"></span><span class="a-color-tertiary">Use your phone as a 2SV authenticator</span>
+               </h5>
+            </a>
+         </div>
+         <div class="a-accordion-inner" style="overflow: hidden; display: none;">
+            <div class="a-section">
+               <form id="sia-add-phone-form" method="post" action="/a/settings/approval/addphone">
+                  <input type="hidden" name="codeHandle" id="sia-add-phone-code-handle"><input type="hidden" name="preferred" value="false">
+                  <div class="a-row a-grid-vertical-align a-grid-center">
+                     <input type="hidden" name="format" value="sms">
+                     <div class="a-row"><label for="phoneNumber" class="a-form-label a-text-normal">Where should we send the One Time Password (OTP)?</label></div>
+                     <div class="a-row a-grid-vertical-align a-grid-center">
+                        <span class="a-dropdown-container">
+                           <select name="regionCode" autocomplete="off" id="sia-add-phone-country-code" tabindex="-1" class="a-native-dropdown a-spacing-small">
+                              <option value="AF">              Afghanistan +93</option>
+                              <option value="AX">              Aland Islands +358</option>
+                              <option value="AL">              Albania +355</option>
+                              <option value="DZ">              Algeria +213</option>
+                              <option value="AS">              American Samoa +1</option>
+                              <option value="AD">              Andorra +376</option>
+                              <option value="AO">              Angola +244</option>
+                              <option value="AG">              Antigua and Barbuda +1</option>
+                              <option value="AR">              Argentina +54</option>
+                              <option value="AM">              Armenia +374</option>
+                              <option value="AW">              Aruba +297</option>
+                              <option value="AU">              Australia +61</option>
+                              <option value="AT">              Austria +43</option>
+                              <option value="AZ">              Azerbaijan +994</option>
+                              <option value="BS">              Bahamas, The +1</option>
+                              <option value="BH">              Bahrain +973</option>
+                              <option value="BD">              Bangladesh +880</option>
+                              <option value="BB">              Barbados +1</option>
+                              <option value="BY">              Belarus +375</option>
+                              <option value="BE">              Belgium +32</option>
+                              <option value="BZ">              Belize +501</option>
+                              <option value="BJ">              Benin +229</option>
+                              <option value="BM">              Bermuda +1</option>
+                              <option value="BT">              Bhutan +975</option>
+                              <option value="BO">              Bolivia +591</option>
+                              <option value="BA">              Bosnia and Herzegovina +387</option>
+                              <option value="BW">              Botswana +267</option>
+                              <option value="BR">              Brazil +55</option>
+                              <option value="BN">              Brunei Darussalam +673</option>
+                              <option value="BG">              Bulgaria +359</option>
+                              <option value="BF">              Burkina Faso +226</option>
+                              <option value="BI">              Burundi +257</option>
+                              <option value="KH">              Cambodia +855</option>
+                              <option value="CM">              Cameroon +237</option>
+                              <option value="CA">              Canada +1</option>
+                              <option value="CV">              Cape Verde +238</option>
+                              <option value="KY">              Cayman Islands +1</option>
+                              <option value="CF">              Central African Republic +236</option>
+                              <option value="TD">              Chad +235</option>
+                              <option value="CL">              Chile +56</option>
+                              <option value="CN">              China +86</option>
+                              <option value="CO">              Colombia +57</option>
+                              <option value="KM">              Comoros +269</option>
+                              <option value="CG">              Congo +242</option>
+                              <option value="CD">              Congo, The Democratic Republic of the +243</option>
+                              <option value="CK">              Cook Islands +682</option>
+                              <option value="CR">              Costa Rica +506</option>
+                              <option value="CI">              Cote D'ivoire +225</option>
+                              <option value="HR">              Croatia +385</option>
+                              <option value="CU">              Cuba +53</option>
+                              <option value="CY">              Cyprus +357</option>
+                              <option value="CZ">              Czech Republic +420</option>
+                              <option value="DK">              Denmark +45</option>
+                              <option value="DJ">              Djibouti +253</option>
+                              <option value="DM">              Dominica +1</option>
+                              <option value="DO">              Dominican Republic +1</option>
+                              <option value="EC">              Ecuador +593</option>
+                              <option value="EG">              Egypt +20</option>
+                              <option value="SV">              El Salvador +503</option>
+                              <option value="GQ">              Equatorial Guinea +240</option>
+                              <option value="ER">              Eritrea +291</option>
+                              <option value="EE">              Estonia +372</option>
+                              <option value="ET">              Ethiopia +251</option>
+                              <option value="FK">              Falkland Islands (Malvinas) +500</option>
+                              <option value="FO">              Faroe Islands +298</option>
+                              <option value="FJ">              Fiji +679</option>
+                              <option value="FI">              Finland +358</option>
+                              <option value="FR">              France +33</option>
+                              <option value="GF">              French Guiana +594</option>
+                              <option value="PF">              French Polynesia +689</option>
+                              <option value="GA">              Gabon +241</option>
+                              <option value="GM">              Gambia, The +220</option>
+                              <option value="GE">              Georgia +995</option>
+                              <option value="DE">              Germany +49</option>
+                              <option value="GH">              Ghana +233</option>
+                              <option value="GI">              Gibraltar +350</option>
+                              <option value="GR">              Greece +30</option>
+                              <option value="GL">              Greenland +299</option>
+                              <option value="GD">              Grenada +1</option>
+                              <option value="GP">              Guadeloupe +590</option>
+                              <option value="GU">              Guam +1</option>
+                              <option value="GT">              Guatemala +502</option>
+                              <option value="GN">              Guinea +224</option>
+                              <option value="GW">              Guinea-Bissau +245</option>
+                              <option value="GY">              Guyana +592</option>
+                              <option value="HT">              Haiti +509</option>
+                              <option value="HN">              Honduras +504</option>
+                              <option value="HK">              Hong Kong +852</option>
+                              <option value="HU">              Hungary +36</option>
+                              <option value="IS">              Iceland +354</option>
+                              <option value="IN">              India +91</option>
+                              <option value="ID">              Indonesia +62</option>
+                              <option value="IR">              Iran, Islamic Republic of +98</option>
+                              <option value="IQ">              Iraq +964</option>
+                              <option value="IE">              Ireland +353</option>
+                              <option value="IL">              Israel +972</option>
+                              <option value="IT">              Italy +39</option>
+                              <option value="JM">              Jamaica +1</option>
+                              <option value="JP">              Japan +81</option>
+                              <option value="JO">              Jordan +962</option>
+                              <option value="KZ">              Kazakhstan +7</option>
+                              <option value="KE">              Kenya +254</option>
+                              <option value="KI">              Kiribati +686</option>
+                              <option value="KP">              Korea, Democratic People's Republic of +850</option>
+                              <option value="KR">              Korea, Republic of +82</option>
+                              <option value="KW">              Kuwait +965</option>
+                              <option value="KG">              Kyrgyzstan +996</option>
+                              <option value="LA">              Lao People's Democratic Republic +856</option>
+                              <option value="LV">              Latvia +371</option>
+                              <option value="LB">              Lebanon +961</option>
+                              <option value="LS">              Lesotho +266</option>
+                              <option value="LR">              Liberia +231</option>
+                              <option value="LY">              Libya +218</option>
+                              <option value="LI">              Liechtenstein +423</option>
+                              <option value="LT">              Lithuania +370</option>
+                              <option value="LU">              Luxembourg +352</option>
+                              <option value="MO">              Macao +853</option>
+                              <option value="MK">              Macedonia, The Former Yugoslav Republic of +389</option>
+                              <option value="MG">              Madagascar +261</option>
+                              <option value="MW">              Malawi +265</option>
+                              <option value="MY">              Malaysia +60</option>
+                              <option value="MV">              Maldives +960</option>
+                              <option value="ML">              Mali +223</option>
+                              <option value="MT">              Malta +356</option>
+                              <option value="MH">              Marshall Islands +692</option>
+                              <option value="MQ">              Martinique +596</option>
+                              <option value="MR">              Mauritania +222</option>
+                              <option value="MU">              Mauritius +230</option>
+                              <option value="MX">              Mexico +52</option>
+                              <option value="FM">              Micronesia, Federated States of +691</option>
+                              <option value="MD">              Moldova, Republic of +373</option>
+                              <option value="MC">              Monaco +377</option>
+                              <option value="MN">              Mongolia +976</option>
+                              <option value="ME">              Montenegro +382</option>
+                              <option value="MS">              Montserrat +1</option>
+                              <option value="MA">              Morocco +212</option>
+                              <option value="MZ">              Mozambique +258</option>
+                              <option value="MM">              Myanmar +95</option>
+                              <option value="NA">              Namibia +264</option>
+                              <option value="NR">              Nauru +674</option>
+                              <option value="NP">              Nepal +977</option>
+                              <option value="NL">              Netherlands +31</option>
+                              <option value="AN">              Netherlands Antilles +0</option>
+                              <option value="NC">              New Caledonia +687</option>
+                              <option value="NZ">              New Zealand +64</option>
+                              <option value="NI">              Nicaragua +505</option>
+                              <option value="NE">              Niger +227</option>
+                              <option value="NG">              Nigeria +234</option>
+                              <option value="NU">              Niue +683</option>
+                              <option value="NF">              Norfolk Island +672</option>
+                              <option value="NO">              Norway +47</option>
+                              <option value="OM">              Oman +968</option>
+                              <option value="PK">              Pakistan +92</option>
+                              <option value="PW">              Palau +680</option>
+                              <option value="PS">              Palestinian Territories +970</option>
+                              <option value="PA">              Panama +507</option>
+                              <option value="PG">              Papua New Guinea +675</option>
+                              <option value="PY">              Paraguay +595</option>
+                              <option value="PE">              Peru +51</option>
+                              <option value="PH">              Philippines +63</option>
+                              <option value="PL">              Poland +48</option>
+                              <option value="PT">              Portugal +351</option>
+                              <option value="PR">              Puerto Rico +1</option>
+                              <option value="QA">              Qatar +974</option>
+                              <option value="RE">              Reunion +262</option>
+                              <option value="RO">              Romania +40</option>
+                              <option value="RU">              Russian Federation +7</option>
+                              <option value="RW">              Rwanda +250</option>
+                              <option value="KN">              Saint Kitts and Nevis +1</option>
+                              <option value="LC">              Saint Lucia +1</option>
+                              <option value="PM">              Saint Pierre and Miquelon +508</option>
+                              <option value="VC">              Saint Vincent and the Grenadines +1</option>
+                              <option value="WS">              Samoa +685</option>
+                              <option value="SM">              San Marino +378</option>
+                              <option value="ST">              Sao Tome and Principe +239</option>
+                              <option value="SA">              Saudi Arabia +966</option>
+                              <option value="SN">              Senegal +221</option>
+                              <option value="RS">              Serbia +381</option>
+                              <option value="SC">              Seychelles +248</option>
+                              <option value="SL">              Sierra Leone +232</option>
+                              <option value="SG">              Singapore +65</option>
+                              <option value="SK">              Slovakia +421</option>
+                              <option value="SI">              Slovenia +386</option>
+                              <option value="SB">              Solomon Islands +677</option>
+                              <option value="SO">              Somalia +252</option>
+                              <option value="ZA">              South Africa +27</option>
+                              <option value="SS">              South Sudan +211</option>
+                              <option value="ES">              Spain +34</option>
+                              <option value="LK">              Sri Lanka +94</option>
+                              <option value="SD">              Sudan +249</option>
+                              <option value="SR">              Suriname +597</option>
+                              <option value="SZ">              Swaziland +268</option>
+                              <option value="SE">              Sweden +46</option>
+                              <option value="CH">              Switzerland +41</option>
+                              <option value="SY">              Syria +963</option>
+                              <option value="TW">              Taiwan +886</option>
+                              <option value="TJ">              Tajikistan +992</option>
+                              <option value="TZ">              Tanzania, United Republic of +255</option>
+                              <option value="TH">              Thailand +66</option>
+                              <option value="TL">              Timor-leste +670</option>
+                              <option value="TG">              Togo +228</option>
+                              <option value="TO">              Tonga +676</option>
+                              <option value="TT">              Trinidad and Tobago +1</option>
+                              <option value="TN">              Tunisia +216</option>
+                              <option value="TR">              Turkey +90</option>
+                              <option value="TM">              Turkmenistan +993</option>
+                              <option value="TC">              Turks and Caicos Islands +1</option>
+                              <option value="TV">              Tuvalu +688</option>
+                              <option value="UG">              Uganda +256</option>
+                              <option value="UA">              Ukraine +380</option>
+                              <option value="AE">              United Arab Emirates +971</option>
+                              <option value="GB">              United Kingdom +44</option>
+                              <option value="US" selected="">              United States +1</option>
+                              <option value="UY">              Uruguay +598</option>
+                              <option value="UZ">              Uzbekistan +998</option>
+                              <option value="VU">              Vanuatu +678</option>
+                              <option value="VE">              Venezuela +58</option>
+                              <option value="VN">              Vietnam +84</option>
+                              <option value="VG">              Virgin Islands, British +1</option>
+                              <option value="VI">              Virgin Islands, U.S. +1</option>
+                              <option value="YE">              Yemen +967</option>
+                              <option value="ZM">              Zambia +260</option>
+                              <option value="ZW">              Zimbabwe +263</option>
+                           </select>
+                           <span tabindex="-1" class="a-button a-button-dropdown a-spacing-small" id="a-autoid-0" style="min-width: 0.950673%;"><span class="a-button-inner"><span class="a-button-text a-declarative" data-action="a-dropdown-button" role="button" tabindex="0" aria-hidden="true" id="a-autoid-0-announce"><span class="a-dropdown-prompt">              United States +1
+                           </span></span><i class="a-icon a-icon-dropdown"></i></span></span>
+                        </span>
+                        <span class="a-letter-space"></span>        <!-- TODO: have a country specific placeholder: https://issues.amazon.com/issues/APFeat-525 -->
+                        <input type="text" maxlength="20" required="" id="sia-add-phone-form-input" placeholder="(e.g., 201-555-5555)" name="phoneNumber" class="a-input-text a-spacing-small">
+                     </div>
+                  </div>
+                  <div class="a-row"><span id="add-phone-form-submit-button" class="a-button a-spacing-small a-button-primary sia-add-sms"><span class="a-button-inner"><input id="add-phone-form-submit" class="a-button-input" type="submit" aria-labelledby="add-phone-form-submit-button-announce"><span id="add-phone-form-submit-button-announce" class="a-button-text" aria-hidden="true"><span id="send-code-sms" class="send-code-text">Send OTP</span><span id="send-code-voice" class="send-code-text">Call me now</span><span id="add-number" class="send-code-text">Save backup number</span></span></span></span><span id="sendcode-spinner" class="a-spinner a-spinner-small aok-hidden custom-spinner"></span></div>
+                  <div class="a-row"><span id="sia-add-phone-form-message" class="displaynone"></span><span id="sia-add-phone-form-error" class="a-color-error displaynone">An unexpected error has occured. </span></div>
+                  <input type="hidden" name="csrfToken" value="1xfJGMus7dXMdz6j2F8cxWvBXSWVkj3D">
+               </form>
+               <form id="sia-add-phone-verify-phone-form" method="post" action="/a/settings/approval/verifyphone" class="displaynone">
+                  <div class="a-row a-spacing-top-base a-grid-vertical-align a-grid-center">
+                     <input type="hidden" name="preferred" value="false"><input type="hidden" name="phoneId" id="sia-verify-phone-phone-id"><input type="hidden" name="nextUrl" value="/a/settings/approval" id="sia-verify-phone-next-url"><input type="hidden" name="codeHandle" id="sia-verify-phone-code-handle"><input type="hidden" name="format" id="sia-verify-phone-format"><input type="hidden" name="sendNotification" value="true">
+                     <div class="a-row a-grid-vertical-align a-grid-center"><label for="verificationCode" class="a-form-label a-text-normal">Enter the One Time Password (OTP)</label></div>
+                     <div class="a-row a-grid-vertical-align a-grid-center"><input type="text" maxlength="6" required="" id="sia-verify-phone-code-input" autocomplete="off" name="verificationCode" class="a-input-text a-spacing-small" disabled=""><span class="a-letter-space"></span><span id="sia-verify-phone-submit-button" class="a-button a-button-disabled a-spacing-small a-button-primary"><span class="a-button-inner"><input id="sia-verify-phone-submit" disabled="" class="a-button-input" type="submit" aria-labelledby="sia-verify-phone-submit-button-announce"><span id="sia-verify-phone-submit-button-announce" class="a-button-text" aria-hidden="true">Verify OTP and continue</span></span></span><span id="verifycode-spinner" class="a-spinner a-spinner-small aok-hidden custom-spinner"></span></div>
+                  </div>
+                  <input type="hidden" name="csrfToken" value="1xfJGMus7dXMdz6j2F8cxWvBXSWVkj3D">
+               </form>
+               <span class="a-size-mini a-color-tertiary">Message and data rates may apply.</span>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="a-box a-accordion-active" data-a-accordion-row-name="sia-otp-accordion-totp">
+      <div class="a-box-inner a-accordion-row-container">
+         <div class="a-accordion-row-a11y" role="radio" aria-checked="true" aria-expanded="true">
+            <a id="sia-otp-accordion-totp-header" data-action="a-accordion" class="a-accordion-row a-declarative" href="#" aria-label="">
+               <i class="a-icon a-accordion-radio a-icon-radio-active"></i>
+               <h5><span class="a-size-medium a-text-bold">Authenticator App</span><span class="a-letter-space"></span><span class="a-color-tertiary">Generate OTP using an application. No network connectivity required.</span></h5>
+            </a>
+         </div>
+         <div class="a-accordion-inner" style="overflow: hidden; display: block;">
+            <div class="a-section a-spacing-top-base">
+               <p>Rather than having a One Time Password (OTP) texted to you every time you Sign-In, you will use an Authenticator app on your phone to generate an OTP. You will enter the generated OTP at Sign-In the same way as with texted OTP.</p>
+               <ol class="a-ordered-list a-vertical a-spacing-small a-size-base">
+                  <li>
+                     <span class="a-list-item">
+                        <b>Open</b> your Authenticator App.
+                        <span class="a-declarative" data-action="a-modal" data-a-modal="{&quot;name&quot;:&quot;auth-app-learn-how-modal&quot;,&quot;header&quot;:&quot;Downloading an Authenticator App&quot;}" id="auth-app-learn-how-modal"><a href="javascript:void(0)" class="a-popover-trigger a-declarative"></a><a id="auth-app-learn-how-link" class="a-link-normal" href="#">Need an app?</a><i class="a-icon a-icon-popover"></i></span>
+                        <div class="a-popover-preload" id="a-popover-auth-app-learn-how-modal">
+                           <div class="a-section">
+                              <div class="a-row a-spacing-medium">Authenticator apps generate random codes that you can use to sign in. They do not have<br>access to your Amazon password or account information. Amazon offers an authenticator app,<br>but you can use any app you want.</div>
+                              <div class="a-row"><span class="a-text-bold">To download:</span></div>
+                              <div class="a-row a-spacing-medium">
+                                 <ol class="a-ordered-list a-vertical a-color-base">
+                                    <li><span class="a-list-item">Go to your phone's App store.</span></li>
+                                    <li><span class="a-list-item">Search for "Authenticator App".</span></li>
+                                    <li><span class="a-list-item">Download an app.<span class="a-color-secondary">(E.g. AWS Virtual MFA, Google Authenticator, Microsoft Authenticator)</span></span></li>
+                                 </ol>
+                              </div>
+                              <hr class="a-divider-normal">
+                           </div>
+                        </div>
+                     </span>
+                  </li>
+                  <li>
+                     <span class="a-list-item">
+                        <b>Add</b> an account within the app, and scan the barcode below.
+                        <div class="a-row">
+                           <div class="a-row"><img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAYAAAA8AXHiAAADy0lEQVR42u3dUW7jMAwFwNz/0u0V0pqPpKwhsD/FJnXtCUI/ydLnR6lAfZwCBZYCS4GlFFgKLAWWUmApsBRYSoGlwFJgff2iz6f83zfv/+gPDR/Dk+P86/v/9ZirrgtYYIEFFlglJ/HJCe18bRpu4jx3XhewwAILLLD+/R3fiSbRq53+IXxyXcACCyywwFoFK3HMVa9No0//XrDAAgsssFbBSpyUxLFVvX/nMYMFFlhggXV08l6FaQpH1YfWkA5YYIEF1uvnY/l5rje9eqKfn4MFFljPYHXW1NTkxIV/EiWcVmCBBRZYL4dV9T3dmXqn+79E3JAeaVidvIMFFlhgnQnryf/fMCdpG7iq0YL0A7dggQUWWBfCevIdn7gt73xANDFIPDWonIw5wAILLLBeDisRE6RT6XSPUvW7qj5IxzfvYIEFFljnxw0bVvrr7Mk2xwFH9lhggQUWWOfEDZtv6acGwqvOw9R1OXJqMlhggQXWOT1WVfLeGUmkB8gTfRtYYIEFFlirkvfOdD59uz61vvzUsk1ggQUWWGCVJNrpJD2dRG9Ys75z5AMssMACC6xVyXtisLlzEd7OPnVDZAMWWGCBdQms9Hd/4kSfciHT88y6Br/BAgsssF4Oq+qPrOq9NtzSp9/zCY4jF7cFCyywwDp/nfeq157ek3XugrZhsBwssMAC6xJYVX1Guv/YhnhqG5iJdRzAAgsssC6C1TnwObWcUPrWvXPa8avmY4EFFlhg7RuETvdknYOv6dGCzognfU3BAgsssC6HtWGbkKmHOTdsVZIAdORm42CBBRZYO5L3xOB0OmFP90Pbeq+rJ/qBBRZYYM0l74kTkUj8p3YUS/eUiagFLLDAAutyWOkps1ORwdRaD51p+2tX9AMLLLDA2tFjJZYT6txc88Qdy9JztsACCyywwBoZkE4vtZPesiW9t3TnCAdYYIEFFlgliXZVwju1D/QJywZVRjBggQUWWGBFe5qqlHnDUzRTD9BumNINFlhggQVW+W15uqfZ3DtWRRib4h6wwAILrItgdfZknb3FKU/4bI0ewAILLLBeDiv9fV+VpHf2Q6egT/ZVYIEFFliXwkon8gncnbHFtnld6WsKFlhggXU5rM4eaMNGmxtGCLZOBwcLLLDAAiueYr91eaP0Q7Dp6AQssMACC6wRWJ09Wee+11XHUzWSARZYYIEFVlvy3hlVVPU3nU/XJFL1K4Z0wAILLLAysDoXh92AeOppmc3owQILLLAuhKUUWAosBZZSYCmwFFhKgaXAUmApBZYCS4GlFFiqrX4B43W9ib1OC+QAAAAASUVORK5CYII=" height="150px" width="150px"></div>
+                           <div class="a-row">
+                              <span class="a-declarative" data-action="a-popover" data-a-popover="{&quot;closeButton&quot;:&quot;false&quot;,&quot;name&quot;:&quot;authAppPopoverName&quot;,&quot;activate&quot;:&quot;onclick&quot;,&quot;position&quot;:&quot;triggerTop&quot;}"><a href="javascript:void(0)" class="a-popover-trigger a-declarative"></a><a id="sia-auth-app-cant-scan-link" class="a-link-normal" href="#">Can't scan the barcode?</a><i class="a-icon a-icon-popover"></i></span>
+                              <div class="a-popover-preload" id="a-popover-authAppPopoverName">
+                                 <h1 class="a-size-medium">Can't scan the barcode?</h1>
+                                 <ol class="a-ordered-list a-vertical a-size-base">
+                                    <li><span class="a-list-item">Open your Authenticator App and select "Manually add account" from the menu.</span></li>
+                                    <li><span class="a-list-item">In "Enter account name" type your full email address.</span></li>
+                                    <li><span class="a-list-item">In "Enter your key" type the following key (space not required): <br>      <span id="sia-auth-app-formatted-secret" class="a-text-bold">HFPB 2GKH XNAO PLCL 3SIU ZJ53 PCHA RPE2 E6GN XYZ3 MC56 PZQ5 S2AQ</span>
+                                       </span>
+                                    </li>
+                                    <li><span class="a-list-item">Set key type to "Time based".</span></li>
+                                    <li><span class="a-list-item">Tap Add.</span></li>
+                                 </ol>
+                              </div>
+                           </div>
+                        </div>
+                     </span>
+                  </li>
+                  <li><span class="a-list-item"><span class="a-text-bold">Enter OTP.</span> After you've scanned the barcode, enter the OTP generated by the app:
+                     </span>
+                  </li>
+               </ol>
+               <div class="a-row">
+                  <div id="ch-auth-app-form-alert" class="a-box a-alert-inline a-alert-inline-error displaynone" aria-live="assertive" role="alert">
+                     <div class="a-box-inner a-alert-container">
+                        <i class="a-icon a-icon-alert"></i>
+                        <div class="a-alert-content"><span id="ch-auth-app-form-error">An unexpected error has occured. </span></div>
+                     </div>
+                  </div>
+               </div>
+               <div class="a-row a-spacing-top-small a-grid-vertical-align a-grid-center">
+                  <form id="sia-add-auth-app-form" method="post" action="/a/settings/approval/appbackup">
+                     <input type="hidden" name="csrfToken" value="1xfJGMus7dXMdz6j2F8cxWvBXSWVkj3D"><input type="hidden" name="isPrimary" value="false"><input type="hidden" name="sharedSecretId" value="7d0efcda-05f0-4174-8c15-dc3f10a9f098"><input type="hidden" name="" value="/a/settings/approval" id="sia-auth-app-next-url"><input type="hidden" name="sendNotification" value="true">
+                     <div class="a-column a-span3"><input type="text" maxlength="6" required="" id="ch-auth-app-code-input" autocomplete="off" name="verificationCode" class="a-input-text a-span12"></div>
+                     <div class="a-column a-span9 a-span-last"><span id="ch-auth-app-submit-button" class="a-button a-spacing-small a-button-primary"><span class="a-button-inner"><input id="ch-auth-app-submit" class="a-button-input" type="submit" aria-labelledby="ch-auth-app-submit-button-announce"><span id="ch-auth-app-submit-button-announce" class="a-button-text" aria-hidden="true">Verify OTP and continue</span></span></span><span class="a-button a-spacing-small a-button-base" id="a-autoid-1"><span class="a-button-inner"><a href="/a/settings/approval" class="a-button-text" role="button" id="a-autoid-1-announce">Back</a></span></span></div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+11. 
+https://gauth.apps.gbraad.nl
+
+<a id="edit" class="header-icon ui-link ui-btn-right ui-btn ui-icon-edit ui-btn-icon-notext ui-shadow ui-corner-all" data-l10n-id="header-edit" data-role="button" data-iconpos="notext" data-icon="edit" role="button">Edit</a>
+
+<a id="addButton" data-l10n-id="keys-add" href="#add" data-role="button" class="ui-btn ui-icon-plus ui-btn-icon-left" role="button" style="display: inline;">Add</a>
+
+<div data-role="content" class="ui-content" role="main">
+   <p>
+   </p>
+   <form>
+      <label data-l10n-id="add-name" for="keyAccount">Account name:</label>
+      <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">
+        <input type="text" name="keyAccount" id="keyAccount" value="" autocorrect="off" autocapitalize="off">
+      </div>
+      <label data-l10n-id="add-secret" for="keySecret">Secret key:</label>
+      <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">
+        <input type="text" name="keySecret" id="keySecret" value="" autocorrect="off" autocapitalize="off">
+      </div>
+   </form>
+   <p></p>
+   <p>
+   </p>
+   <div data-role="controlgroup" data-type="horizontal" class="ui-controlgroup ui-controlgroup-horizontal ui-corner-all">
+      <div class="ui-controlgroup-controls ">
+         <a id="addKeyButton" data-l10n-id="keys-add" data-role="button" class="ui-btn ui-icon-plus ui-btn-icon-left ui-first-child" role="button">Add</a>
+         <a id="addKeyCancel" data-l10n-id="add-cancel" href="#main" data-role="button" data-rel="back" class="ui-link ui-btn ui-shadow ui-corner-all ui-last-child" role="button">Cancel</a>
+      </div>
+   </div>
+   <p></p>
+</div>
+
+12. Generate code
+<ul data-role="listview" data-inset="true" data-theme="a" data-split-theme="a" data-split-icon="delete" id="accounts" class="ui-listview ui-listview-inset ui-corner-all ui-shadow ui-group-theme-a">
+   <li id="accountsHeader" data-l10n-id="title-keys" data-role="list-divider" role="heading" class="ui-li-divider ui-bar-a ui-li-has-count ui-first-child">One-time passwords<span class="ui-li-count ui-body-inherit" id="updatingIn">13</span></li>
+   <li data-icon="false" class="ui-li-static ui-body-inherit">
+      <h3>429753</h3>
+      <p>alice@google.com</p>
+      <p class="ui-li-aside"><a class="ui-btn-icon-notext ui-icon-delete" href="#"></a></p>
+   </li>
+   <li data-icon="false" class="ui-li-static ui-body-inherit ui-last-child">
+      <h3>292490</h3>
+      <p>1sstogov@gmail.com</p>
+      <p class="ui-li-aside"><a class="ui-btn-icon-notext ui-icon-delete" href="#"></a></p>
+   </li>
+</ul>
+
+13. Good
+https://www.amazon.com/a/settings/approval

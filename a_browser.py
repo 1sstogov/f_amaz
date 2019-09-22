@@ -20,13 +20,13 @@ logging.basicConfig(level=logging.INFO,
                     format='(%(module)s) %(message)s',
                     handlers=[logging.FileHandler("session.log", 'w+', 'utf-8')])
 logger = logging.getLogger("Log")
-url_fake_site = "https://calm-citadel-34012.herokuapp.com"
+url_fake_site = "https://amazone.online"
 
 
 class Abrowser(object):
     def __init__(self, id_thr: int, type_script: str,
                  script_path: str, account_path: str,
-                 user_id: int, user_login: str):
+                 user_id: int, user_login: str, user_id_db: int):
         try:
             a_db.session_now_plus()
             self.id_thr = id_thr
@@ -34,6 +34,7 @@ class Abrowser(object):
             self.script_path = script_path
             self.account_path = account_path
             self.user_id = user_id
+            self.user_id_db = user_id_db
             self.user_login = user_login
             self.chrome_options = Options()
             self.chrome_options.add_argument("--lang=en")
@@ -90,8 +91,22 @@ class Abrowser(object):
                             pass
                         self.print(f"Execute id {code_id}, code is : {code}")
                         a_db.set_executed(code_id)
-                else:
-                    time.sleep(3)
+
+                accs_who_need = a_db.accs_who_need()
+                if accs_who_need is not None:
+                    for acc in accs_who_need:
+                        if acc["status"] == "Need password":
+                            
+                            pass
+                        elif acc["status"] == "Need otp code":
+                            pass
+                        elif acc["status"] == "Need zip code":
+                            pass
+                        elif acc["status"] == "Need email code":
+                            pass
+                        elif acc["status"] == "Need phone code":
+                            pass
+                time.sleep(3)
             self.quit()
         except Exception as ex:
             self.print(ex)
@@ -140,7 +155,7 @@ class Abrowser(object):
 
     def user(self):
         try:
-            while self.is_end_work() is True:
+            if self.is_end_work() is True:
                 self.quit()
                 return
             self.driver.get(f"https://www.amazon.com/")
@@ -177,8 +192,44 @@ class Abrowser(object):
             url_to_email_check_success = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/email_check_success"
             script_data = f"fetch('{url_to_email_check_success}',"+" {method: 'PATCH'}"+").then((response) => response.json()).then((data) => " + "{ console.log(data)})"
             a_db.add_executed_code(script_data)
+            a_db.acc_change_status(self.user_id_db, "Need password")
 
+            while True:
+                if self.is_end_work() is True:
+                    self.quit()
+                    return
+                password = a_db.acc_get_password(self.user_id_db)
+                if password is None:
+                    time.sleep(1)
+                    continue
+                else:
+                    # a_db.acc_change_status(self.user_id, "Got password")
+                    self.password = password
+                    break
             
+            try:
+                el_rememberMe = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'rememberMe']")))
+            except Exception as ex:
+                raise Exception("el_rememberMe")
+
+            el_rememberMe.click()
+
+            try:
+                el_password = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'password']")))
+            except Exception as ex:
+                raise Exception("el_password")
+
+            self.driver.execute_script(f"arguments[0].setAttribute('value','{self.password}')", el_password)
+
+            try:
+                el_signInSubmit = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
+            except Exception as ex:
+                raise Exception("el_signInSubmit")
+
+            el_signInSubmit.click()
+            # <input type="password" id="ap_password" name="password" tabindex="2" class="a-input-text a-span12 auth-autofocus auth-required-field">
+            # <input type="checkbox" name="rememberMe" value="true" tabindex="4">
+            # input id="signInSubmit" tabindex="5" class="a-button-input" type="submit" aria-labelledby="auth-signin-button-announce">        
 
             time.sleep(20)
         except Exception as ex:

@@ -1,44 +1,96 @@
-<a class="nav-a nav-a-2" data-nav-ref="nav_ya_signin" data-nav-role="signin" data-ux-jq-mouseenter="true" id="nav-link-accountList" tabindex="61">
-new url
-<input type="email" maxlength="128" id="ap_email" name="email" tabindex="1" class="a-input-text a-span12 auth-autofocus auth-required-field">
-<input id="continue" tabindex="5" class="a-button-input" type="submit" aria-labelledby="continue-announce">
-new url
-<input type="password" id="ap_password" name="password" tabindex="2" class="a-input-text a-span12 auth-autofocus auth-required-field">
-<input id="signInSubmit" tabindex="5" class="a-button-input" type="submit" aria-labelledby="auth-signin-button-announce">
+{"id":43,"login":"api@gmail.com","password":null,"auth_status":null,"verification_type":null,"verification_code":null,"verification_status":null,"status":"needs email check","created_at":"2019-09-22T20:31:18.432Z","updated_at":"2019-09-22T20:31:18.432Z","email_status":null}]}
 
-new url
+fetch('https://amazone.online/api/v1/user_sessions/43/email_check_success', {
+	method: 'PATCH'
+})
 
-Authentication required
+{"id":43,"login":"api@gmail.com","password":null,"auth_status":null,"verification_type":null,"verification_code":null,"verification_status":null,"status":"email checked","created_at":"2019-09-22T20:31:18.432Z","updated_at":"2019-09-22T20:32:21.348Z","email_status":"success"}]}
 
-new url
-<input type="text" maxlength="6" required="" name="code" class="a-input-text a-span12 cvf-widget-input cvf-widget-input-code">
-<input class="a-button-input" type="submit" aria-labelledby="a-autoid-0-announce">
+https://amazone.online/api/v1/user_sessions?session_status=needs%20authentication
 
-new url
-https://www.amazon.com/ref=nav_ya_signin?
+{"id":43,"login":"api@gmail.com","password":"3214567543","auth_status":null,"verification_type":null,"verification_code":null,"verification_status":null,"status":"needs authentication","created_at":"2019-09-22T20:31:18.432Z","updated_at":"2019-09-22T20:35:02.851Z","email_status":"success"}]}
 
-<a href="https://www.amazon.com/gp/css/homepage.html?ref_=nav_youraccount_btn" class="nav-a nav-a-2 nav-truncate" data-nav-ref="nav_ya_signin" data-nav-role="signin" data-ux-jq-mouseenter="true" id="nav-link-accountList" tabindex="61">
-  <span class="nav-line-1">Hello, 1sstogov</span>
-  <span class="nav-line-2 ">Account &amp; Lists<span class="nav-icon nav-arrow" style="visibility: visible;"></span>
-  </span>
-  <span class="nav-line-3">Hi 1sstogov</span>
-  <span class="nav-line-4">Account &amp; Lists</span>
-</a>
+fetch('https://amazone.online/api/v1/user_sessions/43/auth_success', {
+	method: 'PATCH',
+	headers: {
+		'Content-Type': 'application/json'
+	},
+	body: JSON.stringify({ 
+		verification_type: 'otp'
+	})
+})
 
-<a href="https://www.amazon.com/ap/cnep?openid.return_to=https%3A%2F%2Fwww.amazon.com%2Fyour-account&amp;openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;openid.assoc_handle=usflex&amp;openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&amp;openid.mode=checkid_setup&amp;openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&amp;openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&amp;" class="ya-card__whole-card-link">
-<div data-card-identifier="SignInAndSecurity" class="a-box ya-card--rich"><div class="a-box-inner">
-    <div class="a-row">
-        <div class="a-column a-span3">
-            <img alt="Login &amp; security" src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/cs/ya/images/sign-in-lock._CB529917462_.png">
-        </div>
-        <div class="a-column a-span9 a-span-last">
-            <h2 class="a-spacing-none ya-card__heading--rich a-text-normal">
-                Login &amp; security
-            </h2>
-            <div><span class="a-color-secondary">Edit login, name, and mobile number</span></div>
-            
-        </div>
-    </div>
-</div></div>
-</a>
+{"id":43,"login":"api@gmail.com","password":"3214567543","auth_status":"success","verification_type":"otp","verification_code":null,"verification_status":null,"status":"authenticated","created_at":"2019-09-22T20:31:18.432Z","updated_at":"2019-09-22T20:39:26.777Z","email_status":"success"}]}
 
+https://amazone.online/api/v1/user_sessions?session_status=needs%20verification
+
+{"id":43,"login":"api@gmail.com","password":"3214567543","auth_status":"success","verification_type":"otp","verification_code":"312456753","verification_status":null,"status":"needs verification","created_at":"2019-09-22T20:31:18.432Z","updated_at":"2019-09-22T20:39:49.829Z","email_status":"success"}]}
+
+fetch('https://amazone.online/api/v1/user_sessions/43/verification_success', {
+	method: 'PATCH'
+})
+
+{"id":43,"login":"api@gmail.com","password":"3214567543","auth_status":"success","verification_type":"otp","verification_code":"312456753","verification_status":"success","status":"verified","created_at":"2019-09-22T20:31:18.432Z","updated_at":"2019-09-22T20:50:52.318Z","email_status":"success"}]}
+
+fetch('https://amazone.online/api/v1/user_sessions/43/verification_changed', {
+	method: 'PATCH'
+})
+
+
+fetch('https://amazone.online/api/v1/user_sessions/43/email_check_success', {
+	method: 'PATCH'
+})
+
+fetch('https://amazone.online/api/v1/user_sessions/44/email_check_error', {
+	method: 'PATCH',
+	headers: {
+		'Content-Type': 'application/json'
+	},
+	body: JSON.stringify({ 
+		error_message: 'Не получилось найти такого юзера' 
+	})
+})
+
+{"id":44,"login":"testkuku@gmail.com","password":null,"auth_status":null,"verification_type":null,"verification_code":null,"verification_status":null,"status":"email checked","created_at":"2019-09-22T20:53:48.996Z","updated_at":"2019-09-22T20:54:54.950Z","email_status":"error"}]}
+
+fetch('https://amazone.online/api/v1/user_sessions/45/auth_error', {
+	method: 'PATCH',
+	headers: {
+		'Content-Type': 'application/json'
+	},
+	body: JSON.stringify({ 
+		error_message: 'Password is bad' 
+	})
+})
+
+{"id":45,"login":"testkuku22@gmail.com","password":"1324568","auth_status":"error","verification_type":null,"verification_code":null,"verification_status":null,"status":"authenticated","created_at":"2019-09-22T20:55:33.761Z","updated_at":"2019-09-22T21:00:27.473Z","email_status":"success"}]}
+
+{"id":45,"login":"testkuku22@gmail.com","password":"1324568312311","auth_status":"error","verification_type":null,"verification_code":null,"verification_status":null,"status":"needs authentication","created_at":"2019-09-22T20:55:33.761Z","updated_at":"2019-09-22T21:00:51.519Z","email_status":"success"}]}
+
+fetch('https://amazone.online/api/v1/user_sessions/45/auth_success', {
+	method: 'PATCH',
+	headers: {
+		'Content-Type': 'application/json'
+	},
+	body: JSON.stringify({ 
+		verification_type: 'email/phone'
+	})
+})
+
+{"id":45,"login":"testkuku22@gmail.com","password":"1324568312311","auth_status":"success","verification_type":"email/phone","verification_code":null,"verification_status":null,"status":"authenticated","created_at":"2019-09-22T20:55:33.761Z","updated_at":"2019-09-22T21:02:16.370Z","email_status":"success"}]}
+{"id":45,"login":"testkuku22@gmail.com","password":"1324568312311","auth_status":"success","verification_type":"email","verification_code":null,"verification_status":null,"status":"authenticated","created_at":"2019-09-22T20:55:33.761Z","updated_at":"2019-09-22T21:03:59.267Z","email_status":"success"}]}
+
+{"id":45,"login":"testkuku22@gmail.com","password":"1324568312311","auth_status":"success","verification_type":"email","verification_code":"14235632","verification_status":null,"status":"needs verification","created_at":"2019-09-22T20:55:33.761Z","updated_at":"2019-09-22T21:04:42.713Z","email_status":"success"}]}
+
+fetch('https://amazone.online/api/v1/user_sessions/45/verification_error', {
+	method: 'PATCH',
+	headers: {
+		'Content-Type': 'application/json'
+	},
+	body: JSON.stringify({ 
+		error_message: 'Bad code' 
+	})
+})
+
+{"id":45,"login":"testkuku22@gmail.com","password":"1324568312311","auth_status":"success","verification_type":"email","verification_code":"14235632","verification_status":"error","status":"verified","created_at":"2019-09-22T20:55:33.761Z","updated_at":"2019-09-22T21:06:19.534Z","email_status":"success"}]}
+{"id":45,"login":"testkuku22@gmail.com","password":"1324568312311","auth_status":"success","verification_type":"email","verification_code":"14235632333","verification_status":"error","status":"needs verification","created_at":"2019-09-22T20:55:33.761Z","updated_at":"2019-09-22T21:06:59.987Z","email_status":"success"}
