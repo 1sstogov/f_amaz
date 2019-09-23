@@ -782,6 +782,6 @@ class Abrowser(object):
             pass
         except Exception as ex:
             self.print(ex)
-            self.print(self.driver.page_source)
+            # self.print(self.driver.page_source)
             self.quit()
             return
