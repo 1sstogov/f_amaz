@@ -1,0 +1,112 @@
+<div class="a-section">
+
+
+
+
+
+
+    <div class="a-box a-spacing-extra-large">
+        <div class="a-box-inner">
+            <h1 class="a-spacing-small">
+                Two-Step Verification
+            </h1>
+
+            <p>
+
+
+
+                Choose where to receive the One Time Password (OTP)
+
+
+            </p>
+
+            <form id="auth-select-device-form" method="post" novalidate="" action="" class="a-spacing-medium">
+                <input type="hidden" name="appAction" value="MFA_NEW_OTP">
+                <input type="hidden" name="appActionToken" value="r2NMHIwJDtuyzkcQLA3xhz4qzEQj3D">
+
+
+
+
+
+
+
+                <input type="hidden" name="openid.return_to"
+                    value="ape:aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9hL2FwLXBvc3QtcmVkaXJlY3Q/c2l0ZVN0YXRlPWNsaWVudENvbnRleHQlM0QxMzYtNzQ1MDMzNi02ODQ1MDU2JTJDc291cmNlVXJsJTNEaHR0cHMlMjUzQSUyNTJGJTI1MkZ3d3cuYW1hem9uLmNvbSUyNTJGYSUyNTJGc2V0dGluZ3MlMjUyRmFwcHJvdmFsJTI1MkZhcHBiYWNrdXAlMjUzRnJlZiUyNTNEY2hfYWRzZWNfYWRkRXh0cmFBcHBfYXR0ZW1wdCUyQ3NpZ25hdHVyZSUzRHpabXVHWTRtaWVwS0ZlTUFVdVZjR2VUcTVSMGozRA==">
+
+                <input type="hidden" name="prevRID" value="ape:WjlKUVNLWkpaWFlQQ1dZNlNTTlk=">
+
+                <input type="hidden" name="workflowState"
+                    value="eyJ6aXAiOiJERUYiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiQTI1NktXIn0.6sVMB0sr4vBB8Cl3gRTT8RVOv5thrwN-b-Q_I6knyAsGz5MT72fMiw.JV6WcSkTMCnR1lkP.pEI_xG-qb-8ZN07UwAQ8q0rJRzeeDvXEu-ThxUeb4ZDBlCVn8iH275zxdoYUWzhcsgJcRxDFaRqZqijefZZEcqtc_Sx_AGKt9mdWGMo8z4LpEXwupLJh0szGMywPHS2O9rf0uMJeUlSPa1Jh3Ew6QK3Nz5zuEIlZskORpu0JdHTZME_6scirs8eM_c1TFRgKxH2OfAwIYee7PcmWWNqoaOyI92zvE9VwN6YnLLkMJDNMEBtRkiS1SWUICLmQIIwwh_5f_kv0rMgVpBxFkjkS6DdexolLE2y7EWPlP2UFegwsPdy5JA2iIo7LhjBjk7fdpwgow2EbUS_bIrnJPQ5hxEXPalge5KiEVJ37iT1YweBPDFpn3QMV4fchEEQgpHsxYVYl-C1KoRWE2EH9oClu4mEk9hwRzS8rkyf6LXVgQyHeaxZbqVN7oMFW_W8khXt2SN3rJiiAa7Qo4vlj0W5kGkljv7A2up3hZHfe4zHOoTgKiB6oVgOiJEbcVdmTNkYF6sM0KpqKdJiILqImaycZdjzcDzH_gjklDxTAiCraT637CLNca564Rr-EO4aHoiCxGqzXnlFPxA6alaA3ezLmYNIaVeZKVODP99xP5Q_1WVL3uV1apHm_-GY5qfXzOM_9-W8vhPfyESVnlHIP0sHngs-meIBEqqFWMmcFAgJpP2P3GticEBf_ETeQallRC2f8BN8knyfMgJThuuOn9QSckrlBsxVcTYtGzZKeYma-6C0aZxvYqhKFEsThRnPvmbK3QqKyU2de-5U8aaSEfxEQ43rmFVbXVo_6ImOVzlluow9DFBumIVkhZw.ASB80kNHzqyMKsvG_oP6tQ">
+
+
+
+                <div class="a-row a-spacing-small">
+                    <fieldset class="a-spacing-small">
+
+                        <div data-a-input-name="otpDeviceContext" class="a-radio auth-SMS"><label><input type="radio"
+                                    name="otpDeviceContext" value="AAUGXw+tbErnANPPot6du1P8FlfrSha1X6ZSVIfj+5k=, SMS"
+                                    checked=""><i class="a-icon a-icon-radio"></i><span class="a-label a-radio-label">
+                                    Text me at my number ending in 030
+                                </span></label></div>
+
+                        <div data-a-input-name="otpDeviceContext" class="a-radio auth-VOICE"><label><input type="radio"
+                                    name="otpDeviceContext"
+                                    value="AAUGXw+tbErnANPPot6du1P8FlfrSha1X6ZSVIfj+5k=, VOICE"><i
+                                    class="a-icon a-icon-radio"></i><span class="a-label a-radio-label">
+                                    Call me at my number ending in 030
+                                </span></label></div>
+
+                        <div data-a-input-name="otpDeviceContext" class="a-radio auth-TOTP"><label><input type="radio"
+                                    name="otpDeviceContext"
+                                    value="SgmGK8I3vFnrh+Wvn3l3IbpZxwubVHQGHTrdML+l7BY=, TOTP"><i
+                                    class="a-icon a-icon-radio"></i><span class="a-label a-radio-label">
+                                    Enter OTP from Authenticator App
+                                </span></label></div>
+
+                    </fieldset>
+                </div>
+
+                <div class="a-row">
+                    <span class="a-button a-button-span12 a-button-primary" id="a-autoid-0"><span
+                            class="a-button-inner"><input id="auth-send-code" class="a-button-input" type="submit"
+                                aria-labelledby="a-autoid-0-announce"><span class="a-button-text" aria-hidden="true"
+                                id="a-autoid-0-announce">
+                                Send OTP
+                            </span></span></span>
+                </div>
+            </form>
+
+
+            <script>
+                function cf() {
+                    if (typeof window.uet === 'function') {
+                        uet('cf');
+                    }
+                    if (window.embedNotification &&
+                        typeof window.embedNotification.onCF === 'function') {
+                        embedNotification.onCF();
+                    }
+                }
+            </script>
+
+            <script type="text/javascript">cf()</script>
+
+
+            <div class="a-row">
+
+
+
+
+            </div>
+
+            <div class="a-section a-spacing-top-base a-text-center">
+                <a id="auth-otp-cs-link" class="a-link-normal"
+                    href="/gp/help/customer/account-issues/ref=ap_cs_otp?ie=UTF8">
+                    Contact customer service
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>

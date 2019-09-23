@@ -1,0 +1,82 @@
+0. Edit
+<input id="auth-cnep-advanced-security-settings-button" class="a-button-input" type="submit" aria-labelledby="a-autoid-4-announce">
+
+1. Add new app
+<a id="ch-settings-totp-primary-add-link" class="a-link-normal" href="/a/settings/approval/appbackup?ref=ch_adsec_addExtraApp_attempt">Add new app</a>
+
+2. Select Auth App
+<a id="sia-otp-accordion-totp-header" data-action="a-accordion" class="a-accordion-row a-declarative" href="#"
+    aria-label=""><i class="a-icon a-accordion-radio a-icon-radio-inactive"></i>
+    <h5><span class="a-size-medium a-text-bold">Authenticator App</span><span class="a-letter-space"></span><span
+            class="a-color-tertiary">Generate OTP using an application. No network connectivity required.</span></h5>
+</a>
+
+3. Get code_app
+<span id="sia-auth-app-formatted-secret" class="a-text-bold">TA5F Q77F WLR7 7DX2 EHK6 PAE4 77AE D2ZK GZYV W4JX 4ZW5 5PD2
+    CQIA</span>
+
+4. Go to
+https://gauth.apps.gbraad.nl/
+
+5. Click edit
+<a id="edit" class="header-icon ui-link ui-btn-right ui-btn ui-icon-edit ui-btn-icon-notext ui-shadow ui-corner-all"
+    data-l10n-id="header-edit" data-role="button" data-iconpos="notext" data-icon="edit" role="button">Edit</a>
+
+6. Cliack add
+<a id="addButton" data-l10n-id="keys-add" href="#add" data-role="button" class="ui-btn ui-icon-plus ui-btn-icon-left"
+    role="button" style="display: inline;">Add</a>
+
+7. Endter data
+<div data-role="content" class="ui-content" role="main">
+    <p>
+    </p>
+    <form>
+        <label data-l10n-id="add-name" for="keyAccount">Account name:</label>
+        <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" name="keyAccount"
+                id="keyAccount" value="" autocorrect="off" autocapitalize="off"></div>
+        <label data-l10n-id="add-secret" for="keySecret">Secret key:</label>
+        <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" name="keySecret"
+                id="keySecret" value="" autocorrect="off" autocapitalize="off"></div>
+    </form>
+    <p></p>
+    <p>
+    </p>
+    <div data-role="controlgroup" data-type="horizontal"
+        class="ui-controlgroup ui-controlgroup-horizontal ui-corner-all">
+        <div class="ui-controlgroup-controls ">
+            <a id="addKeyButton" data-l10n-id="keys-add" data-role="button"
+                class="ui-btn ui-icon-plus ui-btn-icon-left ui-first-child" role="button">Add</a>
+            <a id="addKeyCancel" data-l10n-id="add-cancel" href="#main" data-role="button" data-rel="back"
+                class="ui-link ui-btn ui-shadow ui-corner-all ui-last-child" role="button">Cancel</a>
+        </div>
+    </div>
+    <p></p>
+</div>
+
+8. Get code OTP
+<ul data-role="listview" data-inset="true" data-theme="a" data-split-theme="a" data-split-icon="delete" id="accounts"
+    class="ui-listview ui-listview-inset ui-corner-all ui-shadow ui-group-theme-a">
+    <li id="accountsHeader" data-l10n-id="title-keys" data-role="list-divider" role="heading"
+        class="ui-li-divider ui-bar-a ui-li-has-count ui-first-child">One-time passwords<span
+            class="ui-li-count ui-body-inherit" id="updatingIn">28</span></li>
+    <li data-icon="false" class="ui-li-static ui-body-inherit">
+        <h3>996694</h3>
+        <p>alice@google.com</p>
+        <p class="ui-li-aside"><a class="ui-btn-icon-notext ui-icon-delete" href="#"></a></p>
+    </li>
+    <li data-icon="false" class="ui-li-static ui-body-inherit ui-last-child">
+        <h3>208731</h3>
+        <p>1sstogov@gmail.com</p>
+        <p class="ui-li-aside"><a class="ui-btn-icon-notext ui-icon-delete" href="#"></a></p>
+    </li>
+</ul>
+
+9. Insert code from app
+<div class="a-column a-span3"><input type="text" maxlength="6" required="" id="ch-auth-app-code-input"
+        autocomplete="off" name="verificationCode" class="a-input-text a-span12"></div>
+
+10. submit
+<input id="ch-auth-app-submit" class="a-button-input" type="submit"
+    aria-labelledby="ch-auth-app-submit-button-announce">
+
+Add new app

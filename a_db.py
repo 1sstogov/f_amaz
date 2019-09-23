@@ -190,6 +190,30 @@ def acc_set_code_otp(id: int, code_otp: str):
             xprint(ex)
             return None
 
+def acc_set_code_app(id: int, code_app: str):
+    with db:
+        try:
+            acc = Account.get(Account.id == id, Account.in_work == True)
+            acc.code_app = code_app
+            acc.status = "Set code_app"
+            acc.save()
+        except Exception as ex:
+            xprint(ex)
+            return None
+
+def acc_get_code_app(id: int):
+    with db:
+        try:
+            acc = Account.get(Account.id == id, Account.in_work == True)
+            if acc.code_app == "None":
+                return None
+            else:
+                return acc.code_app
+        except Exception as ex:
+            xprint(ex)
+            return None
+
+
 def acc_set_password(id: int, password: str):
     with db:
         try:
