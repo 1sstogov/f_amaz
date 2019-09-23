@@ -24,7 +24,8 @@ class Account(BaseModel):
     user_id = IntegerField()
     login = CharField()
     password = CharField(default="None")
-    code = CharField(default="None")
+    code_otp = CharField(default="None")
+    code_app = CharField(default="None")
     proxy = CharField(default="None")
     session_name = CharField(default="None")
     updated_at = DateTimeField(default=datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S"))
@@ -135,7 +136,7 @@ def get_new_session(accs_list: list):
 def acc_change_status(id: int, status: str):
     with db:
         try:
-            acc = Account.get(Account.id == id)
+            acc = Account.get(Account.id == id, Account.in_work == True)
             acc.status = status
             acc.save()
             return True
@@ -143,14 +144,48 @@ def acc_change_status(id: int, status: str):
             xprint(ex)
             return None
 
+def acc_get_status(id: int):
+    with db:
+        try:
+            acc = Account.get(Account.id == id, Account.in_work == True)
+            return acc.status
+        except Exception as ex:
+            xprint(ex)
+            return None
+
 def acc_get_password(id: int):
     with db:
         try:
-            acc = Account.get(Account.id == id)
-            if acc.password is "None":
+            acc = Account.get(Account.id == id, Account.in_work == True)
+            if acc.password == "None" or acc.password is None:
+                # print(f"acc[{id}].password == None")
                 return None
             else:
+                print(f"acc[{id}].password == {acc.password}")
                 return acc.password
+        except Exception as ex:
+            xprint(ex)
+            return None
+
+def acc_get_code_otp(id: int):
+    with db:
+        try:
+            acc = Account.get(Account.id == id, Account.in_work == True)
+            if acc.code_otp == "None":
+                return None
+            else:
+                return acc.code_otp
+        except Exception as ex:
+            xprint(ex)
+            return None
+
+def acc_set_code_otp(id: int, code_otp: str):
+    with db:
+        try:
+            acc = Account.get(Account.id == id, Account.in_work == True)
+            acc.code_otp = code_otp
+            acc.status = "Set code_otp"
+            acc.save()
         except Exception as ex:
             xprint(ex)
             return None
@@ -158,7 +193,7 @@ def acc_get_password(id: int):
 def acc_set_password(id: int, password: str):
     with db:
         try:
-            acc = Account.get(Account.id == id)
+            acc = Account.get(Account.id == id, Account.in_work == True)
             acc.password = password
             acc.status = "Set password"
             acc.save()
@@ -176,7 +211,7 @@ def accs_who_need():
             accs_who_need = []
             for acc in accs:
                 d = {
-                    "id": acc.id,
+                    "id_db": acc.id,
                     "user_id": acc.user_id,
                     "status": f"{acc.status}"
                 }
@@ -189,7 +224,7 @@ def accs_who_need():
 def acc_stop_work(id: int):
     with db:
         try:
-            acc = Account.get(Account.id == id)
+            acc = Account.get(Account.id == id, Account.in_work == True)
             acc.in_work = False
             acc.save()
         except Exception as ex:

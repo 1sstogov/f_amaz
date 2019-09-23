@@ -1,0 +1,73 @@
+<div class="a-section a-padding-base a-text-left">
+
+    <div class="a-row a-spacing-none"><span class="a-color-secondary">Step 3 of 3</span></div>
+
+    <div id="chimera-mfa-how-to" class="a-section a-spacing-top-base">
+        <h1 class="a-spacing-small">Almost done...</h1>
+        <p class="a-spacing-medium">Just two more important things to know: </p>
+        <p></p>
+        <h3 id="chimera-mfa-how-to-alt-exp-heading" class="a-spacing-small"> 1.<span
+                class="a-letter-space"></span>Legacy device Sign-In method
+        </h3>
+
+
+        <div id="chimera-mfa-alt-exp-splash-content" class="a-section">
+            <p class="a-spacing-medium">Some devices are unable to display a second screen prompting you to enter the
+                OTP, but Two-Step Verification will still be required. Here's how it will work:</p>
+            <div class="a-row a-color-tertiary">
+                <ol class="a-ordered-list a-vertical">
+                    <div class="a-column a-span4 a-text-left">
+                        <div id="chimera-mfa-splash-alt-exp-signin-step" class="a-section a-text-left">
+                            <li><span class="a-list-item a-color-tertiary">Sign in with your password. An error message
+                                    will occur.</span></li>
+                        </div>
+                    </div>
+                    <div class="a-column a-span4 a-text-left">
+                        <div id="chimera-mfa-splash-alt-exp-codes-step" class="a-section a-text-left">
+                            <li><span class="a-list-item a-color-tertiary">An OTP will be sent to your preferred phone.
+                                    You may also use an authenticator app.</span></li>
+                        </div>
+                    </div>
+                    <div class="a-column a-span4 a-text-left a-span-last">
+                        <div id="chimera-mfa-splash-alt-exp-append-step" class="a-section a-spacing-micro a-text-left">
+                            <li><span class="a-list-item a-color-tertiary">Add ("append") the OTP to the end of your
+                                    password, and click "Sign-In" again.</span></li>
+                        </div>
+                    </div>
+                </ol>
+            </div>
+            <div class="a-section a-text-left">
+                <div id="chimera-mfa-splash-alt-exp-signin-image"
+                    class="a-section chimera-mfa-alt-splash-authapp-image"></div>
+            </div>
+            <p class="a-spacing-medium">You will then be signed in to your Amazon account.</p>
+        </div>
+        <p></p>
+    </div>
+
+
+    <div id="chimera-mfa-skip-codes-content" class="a-section">
+        <h3 id="chimera-mfa-skip-codes-heading"> 2.<span class="a-letter-space"></span>Suppress OTP challenge during
+            Sign-In
+        </h3>
+        <p>You may suppress future OTP challenges by selecting "Don't require OTP on this browser". As long as the OTP
+            suppression cookie is present, a Sign-In from that browser or application will only require a password.
+            (Note: This option is enabled separately for each browser that you use.)</p>
+    </div>
+    <div class="a-section">
+        <form id="enable-mfa-form" method="post" action="/a/settings/approval/setup/enable">
+            <div id="trustThisDevice" data-a-input-name="trustThisDevice"
+                class="a-checkbox a-checkbox-fancy a-spacing-small"><label><input type="checkbox" name="trustThisDevice"
+                        value="1"><i class="a-icon a-icon-checkbox"></i><span class="a-label a-checkbox-label">Don't
+                        require OTP on this browser</span></label></div>
+            <input type="hidden" name="csrfToken" value="9rqSB3LDBmMk6rTA7NbTtoczff0j3D"><span
+                class="a-button a-button-primary" id="a-autoid-0"><span class="a-button-inner"><input
+                        id="enable-mfa-form-submit" class="a-button-input" type="submit"
+                        aria-labelledby="a-autoid-0-announce"><span class="a-button-text" aria-hidden="true"
+                        id="a-autoid-0-announce">Got it. Turn on Two-Step Verification</span></span></span>
+        </form>
+    </div>
+</div>
+
+
+https://www.amazon.com/a/settings/approval?alertId=enable-succeeded

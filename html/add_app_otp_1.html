@@ -1,0 +1,181 @@
+<div class="a-section a-padding-base a-text-left">
+
+    <h1 id="chimera-mfa-adsec-page-heading" class="a-spacing-large">Two-Step Verification (2SV) Settings</h1>
+    <div class="a-row a-spacing-extra-large">
+        <div class="a-column a-span8">
+            <h2>Two-Step Verification</h2>
+            <div class="a-row a-spacing-micro"><span class="a-color-tertiary">Enabled</span></div>
+        </div>
+        <div class="a-column a-span4 a-text-right a-span-last">
+            <div class="a-row"><span class="a-declarative" data-action="recently-authenticated-modal"
+                    data-recently-authenticated-modal="{&quot;modalId&quot;:&quot;disable-dialog-modal&quot;,&quot;params&quot;:{&quot;autoClick&quot;:&quot;disable-dialog&quot;}}"><span
+                        id="disable-dialog" class="a-button a-spacing-top-mini a-button-span8 a-button-base"><span
+                            class="a-button-inner"><input id="disable-button" class="a-button-input" type="submit"
+                                aria-labelledby="disable-dialog-announce"><span id="disable-dialog-announce"
+                                class="a-button-text a-text-center" aria-hidden="true"> Disable
+                            </span></span></span></span>
+                <span class="a-declarative" data-action="a-modal"
+                    data-a-modal="{&quot;name&quot;:&quot;disable-dialog-modal&quot;,&quot;header&quot;:&quot;Disable&quot;}"
+                    id="disable-dialog-modal"></span></div>
+
+            <div class="a-popover-preload" id="a-popover-disable-dialog-modal">
+                <div class="a-section modal-dialog">
+                    <form method="post" action="/a/settings/approval/disable?autoClick=disable-dialog">
+                        <div class="a-row a-spacing-medium">
+                            <div class="a-row a-spacing-medium">By disabling Two-Step Verification, OTP will no longer
+                                be required to Sign-In to your account. This is not recommended as it reduces your
+                                account's security.</div>
+                            <div class="a-row">
+                                <div id="remove-devices-checkbox" data-a-input-name="removeDevices" class="a-checkbox">
+                                    <label for="remove-devices-checkbox-input"><input id="remove-devices-checkbox-input"
+                                            type="checkbox" name="removeDevices" value="true"><i
+                                            class="a-icon a-icon-checkbox"></i><span
+                                            class="a-label a-checkbox-label">Also clear my Two-Step Verification
+                                            settings</span></label></div>
+                            </div>
+                        </div>
+                        <div class="a-row a-spacing-small">
+                            <hr class="a-divider-normal">
+                        </div>
+                        <div class="a-row">
+                            <div class="a-column a-span6">
+                                <div class="a-row"><span id="cancel-disable-dialog-modal-button"
+                                        class="a-button a-button-span12 a-button-base"><span
+                                            class="a-button-inner"><button
+                                                id="cancel-disable-dialog-modal-button-announce" class="a-button-text"
+                                                type="button">Cancel</button></span></span></div>
+                            </div>
+                            <div class="a-column a-span6 a-span-last">
+                                <div class="a-row">
+                                    <input type="hidden" name="csrfToken" value="7tg1EgRESyk2irXUJUCGObmZIHcj3D"><span
+                                        id="confirm-disable-dialog-modal-button"
+                                        class="a-button a-button-span12 a-button-primary"><span
+                                            class="a-button-inner"><input id="confirm-disable-dialog-modal-submit"
+                                                class="a-button-input" type="submit"
+                                                aria-labelledby="confirm-disable-dialog-modal-button-announce"><span
+                                                id="confirm-disable-dialog-modal-button-announce" class="a-button-text"
+                                                aria-hidden="true"> Disable
+                                            </span></span></span></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="a-row a-spacing-micro">
+        <div class="a-row a-spacing-micro"><span class="a-size-medium a-text-bold">Preferred method</span><span
+                class="a-letter-space"></span><span class="a-letter-space"></span>
+            <a id="sia-settings-change-otp-device-primary" class="a-link-normal"
+                href="/a/settings/approval/editphone?deviceId=g0l7%2BXafzrlLGhkcxwxK8bblgMcUff8nF2tBY2B%2FzLY%3D">Change</a>
+        </div>
+        <hr class="a-spacing-small a-divider-normal">
+
+
+        <div id="ch-settings-devices-row-preferred"
+            class="a-row a-spacing-small a-grid-vertical-align a-grid-center ch-settings-devices-row">
+            <div class="a-row a-spacing-none">
+                <div id="ch-settings-otp-device-preferred" class="a-column a-span3 ch-settings-otp-device-value">
+                    Authenticator App</div>
+                <div id="ch-settings-totp-primary-add" class="a-column a-span5"><a
+                        id="ch-settings-totp-primary-add-link" class="a-link-normal"
+                        href="/a/settings/approval/appbackup?ref=ch_adsec_addExtraApp_attempt">Add new app</a></div>
+                <div id="sia-settings-otp-change-preferred" class="a-column a-span2"></div>
+                <div id="ch-settings-otp-remove-preferred" class="a-column a-span2 a-span-last"></div>
+            </div>
+            <div class="a-row a-spacing-none a-grid-vertical-align a-grid-center">
+                <div id="ch-settings-device-detail-preferred" class="a-column a-span6 ch-settings-device-detail">
+                    <span class="a-color-tertiary">
+                        <div id="settings-enrolled-apps" class="a-section">1 app enrolled</div>
+                    </span></div>
+            </div>
+        </div>
+        <hr class="a-spacing-small a-divider-normal">
+    </div>
+
+
+    <div class="a-row a-spacing-large">
+        <h3>Backup methods</h3>
+        <hr class="a-spacing-small a-divider-normal">
+        <div id="ch-settings-otp-backup-devices" class="a-row a-spacing-none">
+
+            <div id="ch-settings-devices-row-backup-0"
+                class="a-row a-spacing-small a-grid-vertical-align a-grid-center ch-settings-devices-row">
+                <div class="a-row a-spacing-none">
+                    <div id="ch-settings-otp-device-backup-0" class="a-column a-span3 ch-settings-otp-device-value">
+                        +380966713030
+                    </div>
+                    <div id="ch-settings-mobile-claim-backup-0" class="a-column a-span5"></div>
+                    <div id="sia-settings-otp-change-backup-0" class="a-column a-span2"><a
+                            id="ch-settings-otp-change-backup-0" class="a-link-normal ch-settings-change-phone"
+                            href="/a/settings/approval/editphone?deviceId=vSOWZ5tw%2BOX93qW9eAl%2BuE2DOh%2BMi8N3tphDekbBxn8%3D">Change</a>
+                    </div>
+                    <div id="ch-settings-otp-remove-backup-0" class="a-column a-span2 a-span-last"></div>
+                </div>
+                <div class="a-row a-spacing-none a-grid-vertical-align a-grid-center">
+                    <div id="ch-settings-device-detail-backup-0" class="a-column a-span6 ch-settings-device-detail">
+                        <span class="a-color-tertiary">Sent by text message</span></div>
+                </div>
+            </div>
+            <hr class="a-spacing-small a-divider-normal">
+            <div class="a-row"><a id="sia-settings-add-backup-link" class="a-link-normal"
+                    href="/a/settings/approval/addphone">Add new phone</a></div>
+        </div>
+    </div>
+    <div class="a-row a-spacing-medium">
+        <h3>Devices that suppress OTP</h3><span>You may suppress future OTP challenges by selecting "Don't require OTP
+            on this browser". As long as the OTP suppression cookie is present, a Sign-In from that browser or
+            application will only require a password. (Note: This option is enabled separately for each browser that you
+            use.)<br><br>To make sure your account is protected, some actions like changing your account security
+            settings, may still require you to enter an OTP.</span>
+    </div>
+
+    <div class="a-row a-spacing-large">
+        <div class="a-row a-spacing-medium"><span id="trustedDevicesLabel" class="a-text-bold">You have 1 device where
+                OTP is suppressed</span>
+            <span class="a-letter-space"></span><span class="a-letter-space"></span>
+            <span class="a-declarative" data-action="a-modal"
+                data-a-modal="{&quot;name&quot;:&quot;forgetDevicesDialog&quot;,&quot;header&quot;:&quot;Require OTP on all devices&quot;}"
+                id="forgetDevicesDialog"><span id="trustedDevicesButton"
+                    class="a-button a-button-span4 a-button-base a-button-small"><span class="a-button-inner"><input
+                            class="a-button-input" type="submit" aria-labelledby="trustedDevicesButton-announce"><span
+                            id="trustedDevicesButton-announce" class="a-button-text a-text-center" aria-hidden="true">
+                            Require OTP on all devices
+                        </span></span></span></span></div>
+    </div>
+    <div class="a-popover-preload" id="a-popover-forgetDevicesDialog">
+        <div class="a-section modal-dialog">
+            <form method="post" action="/a/settings/approval/forget-devices">
+                <div class="a-row a-spacing-medium"> The next Sign-In from any device will require a password and OTP
+                    challenge.
+                </div>
+                <div class="a-row a-spacing-small">
+                    <hr class="a-divider-normal">
+                </div>
+                <div class="a-row">
+                    <div class="a-column a-span6">
+                        <div class="a-row"><span id="cancel-forgetDevicesDialog-button"
+                                class="a-button a-button-span12 a-button-base"><span class="a-button-inner"><button
+                                        id="cancel-forgetDevicesDialog-button-announce" class="a-button-text"
+                                        type="button">Cancel</button></span></span></div>
+                    </div>
+                    <div class="a-column a-span6 a-span-last">
+                        <div class="a-row">
+                            <input type="hidden" name="csrfToken" value="7tg1EgRESyk2irXUJUCGObmZIHcj3D"><span
+                                id="confirm-forgetDevicesDialog-button"
+                                class="a-button a-button-span12 a-button-primary"><span class="a-button-inner"><input
+                                        id="confirm-forgetDevicesDialog-submit" class="a-button-input" type="submit"
+                                        aria-labelledby="confirm-forgetDevicesDialog-button-announce"><span
+                                        id="confirm-forgetDevicesDialog-button-announce" class="a-button-text"
+                                        aria-hidden="true"> Confirm
+                                    </span></span></span></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="a-row a-spacing-medium a-spacing-top-medium"><a id="chimera-mfa-2sv-help-page-link"
+            class="a-link-normal" href="https://amazon.com/gp/help/customer/display.html?nodeId=201596330">Get help with
+            Two-Step Verification</a></div>
+</div>

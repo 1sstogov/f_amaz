@@ -1,0 +1,58 @@
+<form method="post" action="verify" class="cvf-widget-form fwcim-form a-spacing-none" data-fwcim-id="d288b8a9">
+    <div class="a-row a-spacing-small">
+        <div class="a-row a-spacing-small">
+            <h1>Authentication required</h1>
+        </div>
+
+        <div class="a-row a-spacing-none"> <span> </span>
+            <span>One Time Password (OTP) sent to 1******v@gmail.com. </span>
+            <span>Please enter it below. </span>
+        </div>
+    </div>
+
+    <div class="a-row a-spacing-small">
+        <div class="a-row a-spacing-micro cvf-widget-input-code-label">Enter OTP</div><input type="text" maxlength="6"
+            required="" name="code" class="a-input-text a-span12 cvf-widget-input cvf-widget-input-code">
+    </div>
+    <div class="a-row a-spacing-micro">
+
+
+
+
+
+
+
+
+        <script>
+            P.when("A", "codeResendTimer", "ready").execute(function (A, codeResendTimer) {
+                A.$(document).ready(function () {
+                    var timer = codeResendTimer.createTimer(0, 'A message with a One Time Password (OTP) has been sent to', "You can now request a new code if needed.");
+                });
+            });
+        </script>
+    </div>
+    <div class="a-row a-spacing-small"><span
+            class="a-button a-button-span12 a-button-primary cvf-widget-btn cvf-widget-btn-verify" id="a-autoid-0"><span
+                class="a-button-inner"><input class="a-button-input" type="submit"
+                    aria-labelledby="a-autoid-0-announce"><span class="a-button-text" aria-hidden="true"
+                    id="a-autoid-0-announce">Continue</span></span></span></div>
+    <div class="a-section a-spacing-none a-spacing-top-large a-text-center cvf-widget-section-js"><a
+            class="a-link-normal cvf-widget-btn cvf-widget-link-resend cvf-widget-link-disable-target" href="#"> Resend
+            OTP
+
+        </a>
+    </div>
+    <input type="hidden" name="action" value="code" class="cvf-widget-hidden-fields">
+    <input type="hidden" name="clientContext" value="134-0828852-7908220" class="cvf-widget-hidden-fields"><input
+        type="hidden" name="openid.pape.max_auth_age" value="0" class="cvf-widget-hidden-fields"><input type="hidden"
+        name="use_global_authentication" value="false" class="cvf-widget-hidden-fields"><input type="hidden"
+        name="openid.return_to" value="https://www.amazon.com/?ref_=nav_ya_signin&amp;_encoding=UTF8"
+        class="cvf-widget-hidden-fields"><input type="hidden" name="openid.identity"
+        value="http://specs.openid.net/auth/2.0/identifier_select" class="cvf-widget-hidden-fields"><input type="hidden"
+        name="openid.assoc_handle" value="usflex" class="cvf-widget-hidden-fields"><input type="hidden"
+        name="openid.mode" value="checkid_setup" class="cvf-widget-hidden-fields"><input type="hidden" name="pageId"
+        value="usflex" class="cvf-widget-hidden-fields"><input type="hidden" name="openid.claimed_id"
+        value="http://specs.openid.net/auth/2.0/identifier_select" class="cvf-widget-hidden-fields"><input type="hidden"
+        name="openid.ns" value="http://specs.openid.net/auth/2.0" class="cvf-widget-hidden-fields"><input type="hidden"
+        name="verifyToken" value="s|ac31147d-e9ab-3ede-a05f-a08b605a281d" class="cvf-widget-hidden-fields">
+</form>

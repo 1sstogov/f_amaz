@@ -1,0 +1,48 @@
+<a id="edit" class="header-icon ui-link ui-btn-right ui-btn ui-icon-edit ui-btn-icon-notext ui-shadow ui-corner-all"
+    data-l10n-id="header-edit" data-role="button" data-iconpos="notext" data-icon="edit" role="button">Edit</a>
+
+<a id="addButton" data-l10n-id="keys-add" href="#add" data-role="button" class="ui-btn ui-icon-plus ui-btn-icon-left"
+    role="button" style="display: inline;">Add</a>
+
+<div data-role="content" class="ui-content" role="main">
+    <p>
+    </p>
+    <form>
+        <label data-l10n-id="add-name" for="keyAccount">Account name:</label>
+        <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" name="keyAccount"
+                id="keyAccount" value="" autocorrect="off" autocapitalize="off"></div>
+        <label data-l10n-id="add-secret" for="keySecret">Secret key:</label>
+        <div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset"><input type="text" name="keySecret"
+                id="keySecret" value="" autocorrect="off" autocapitalize="off"></div>
+    </form>
+    <p></p>
+    <p>
+    </p>
+    <div data-role="controlgroup" data-type="horizontal"
+        class="ui-controlgroup ui-controlgroup-horizontal ui-corner-all">
+        <div class="ui-controlgroup-controls ">
+            <a id="addKeyButton" data-l10n-id="keys-add" data-role="button"
+                class="ui-btn ui-icon-plus ui-btn-icon-left ui-first-child" role="button">Add</a>
+            <a id="addKeyCancel" data-l10n-id="add-cancel" href="#main" data-role="button" data-rel="back"
+                class="ui-link ui-btn ui-shadow ui-corner-all ui-last-child" role="button">Cancel</a>
+        </div>
+    </div>
+    <p></p>
+</div>
+
+<ul data-role="listview" data-inset="true" data-theme="a" data-split-theme="a" data-split-icon="delete" id="accounts"
+    class="ui-listview ui-listview-inset ui-corner-all ui-shadow ui-group-theme-a">
+    <li id="accountsHeader" data-l10n-id="title-keys" data-role="list-divider" role="heading"
+        class="ui-li-divider ui-bar-a ui-li-has-count ui-first-child">One-time passwords<span
+            class="ui-li-count ui-body-inherit" id="updatingIn">23</span></li>
+    <li data-icon="false" class="ui-li-static ui-body-inherit">
+        <h3>056887</h3>
+        <p>effarokapu-2501@yopmail.com</p>
+        <p class="ui-li-aside"><a class="ui-btn-icon-notext ui-icon-delete" href="#"></a></p>
+    </li>
+    <li data-icon="false" class="ui-li-static ui-body-inherit ui-last-child">
+        <h3>792985</h3>
+        <p>karlj2wind@rambler.ru</p>
+        <p class="ui-li-aside"><a class="ui-btn-icon-notext ui-icon-delete" href="#"></a></p>
+    </li>
+</ul>

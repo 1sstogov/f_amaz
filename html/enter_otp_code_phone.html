@@ -1,0 +1,103 @@
+<form id="auth-mfa-form" method="post" novalidate="" action="https://www.amazon.com/ap/signin" class="a-spacing-none">
+    <div class="a-box a-spacing-extra-large">
+        <div class="a-box-inner">
+            <input type="hidden" name="appAction" value="SIGNIN_MFA">
+            <input type="hidden" name="appActionToken" value="j2Bqd9RsWcqAwbUi2iES9g1WW2qsMj3D">
+
+
+
+
+
+
+
+            <input type="hidden" name="openid.return_to"
+                value="ape:aHR0cHM6Ly93d3cuYW1hem9uLmNvbS8/cmVmXz1uYXZfc2lnbmlu">
+
+            <input type="hidden" name="prevRID" value="ape:QjNUUkRXMlY1MFBLMlZONVlKTjE=">
+
+            <input type="hidden" name="workflowState"
+                value="eyJ6aXAiOiJERUYiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiQTI1NktXIn0.yKEceF_aPyZ0ZmgtFtg4XG1E_B2Y25XUmv20A-fw_98ObzesIxODcQ.tepe2VsIpgJqys0v.25KTaRIXrHSt9TpHs_s4vAkQXhC4Xy1T-BXlqKrV73zEOZAdWRGlrUkz2YMbpD8_gj_SFot5s99QpVEdzs64xMvbvh8PW3KKJOkNBEX9822ey3X2aLKghbc7YGzvLTX9rQNWPfMB4X8uxv5Cm8VepPYndtrOzdqzXDTlAD6oLFpVVm0LUkd4IEkUwwq3yYARPkg_PB9gxzsEqFphgkgTwfvHRLq7e36Dvd7LqNowNAtqjDF-MGz9zMm7NCzP_qhkKeX71Q1rW6Io4l_pKPH8ieCkp-CaH3lqyWUkNWBKwd_WE6QjzTQpBEFHhQrYhCr4fH6Un0dro33bfR3n3ozOOVgd7D7D97fpZSCbAOs1yHE5gwmfp7osWVGHaUpjWNFSpdRyI-sQd96yMOueT_xm8ljy6aW_Pm4_vNlfd337S-4EZfo0PCLUK75lx9VWC04P-Fe-ex-27uzDzYf7iWRDh5wDy5qRTzuW8R1zaCfkGcnSjq4gzyXilxMsGBFRt7YkYxjbNNPTurMGhyh6i8Fq_ZvR3HGkPfYs6Fk9VprLoRtd_w2gkwNJ08iu3uX_i7Lo2xGuPsLerAfYlS1MolHA5MVIlwm7AFDG2UzmWq7uKvabN65PUsoC5Nh1rgW7Rl7YJXSRY9amwwGA6JNxKsW01hymHx6gF4rKYXgEZp9JSaMNMDluFEJhEVT5RS502AqMgsQn_Cx6mZ22-dKEdn5q2UBcYiL_SO_7dRafMpDMUnznrC3B5-vC7IOJJuk1ps8ysUTKzjFQMEk2qB8QjjfJkC6L4A3-G_TdxnGA.B75v8TkYtNaHvh-R6a-ImQ">
+
+
+
+
+            <h1>
+                Two-Step Verification
+            </h1>
+
+
+
+
+
+            <p>
+                Enter the One Time Password (OTP) that has been sent to a phone number ending in 030
+            </p>
+
+
+            <div class="a-row a-spacing-base">
+                <label for="auth-mfa-otpcode" class="a-form-label">
+                    Enter OTP:
+                </label>
+
+                <input type="tel" maxlength="20" id="auth-mfa-otpcode" autocomplete="off" name="otpCode"
+                    class="a-input-text a-span12 auth-autofocus auth-required-field">
+            </div>
+
+
+            <div class="a-row a-spacing-medium">
+                <div data-a-input-name="rememberDevice" class="a-checkbox"><label for="auth-mfa-remember-device"><input
+                            id="auth-mfa-remember-device" type="checkbox" name="rememberDevice" value=""><i
+                            class="a-icon a-icon-checkbox"></i><span class="a-label a-checkbox-label">
+                            Don't require OTP on this browser
+                        </span></label></div>
+            </div>
+
+
+            <!-- Cancel button -->
+            <div class="a-button-stack a-spacing-extra-large">
+                <span class="a-button a-button-span12 a-button-primary" id="a-autoid-0"><span
+                        class="a-button-inner"><input id="auth-signin-button" name="mfaSubmit" class="a-button-input"
+                            type="submit" aria-labelledby="a-autoid-0-announce"><span class="a-button-text"
+                            aria-hidden="true" id="a-autoid-0-announce">
+                            Sign-In
+                        </span></span></span>
+
+                <script>
+                    function cf() {
+                        if (typeof window.uet === 'function') {
+                            uet('cf');
+                        }
+                        if (window.embedNotification &&
+                            typeof window.embedNotification.onCF === 'function') {
+                            embedNotification.onCF();
+                        }
+                    }
+                </script>
+
+                <script type="text/javascript">cf()</script>
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="a-row">
+                <ul class="a-unordered-list a-vertical">
+                    <li class="a-spacing-small"><span class="a-list-item">
+                            <a id="auth-get-new-otp-link" class="a-link-normal"
+                                href="https://www.amazon.com/ap/mfa/new-otp?ie=UTF8&amp;arb=8fdbbd17-009f-4857-bb4e-17207ef25148">
+                                Didn't receive the OTP?
+                            </a>
+                        </span></li>
+
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</form>
