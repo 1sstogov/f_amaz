@@ -662,9 +662,10 @@ class Abrowser(object):
                 el_span_code_app= WebDriverWait(self.driver, 1).until(EC.presence_of_element_located((By.XPATH, "//span[@id = 'sia-auth-app-formatted-secret']")))
             except Exception as ex:
                 raise Exception("el_span_code_app")
-
-            self.print(f"Code app is {el_span_code_app.text}")
-            a_db.acc_set_code_app(self.user_id_db, el_span_code_app.text)
+            
+            secret_code = el_span_code_app.get_attribute("innerHTML")
+            self.print(f"Code app is {secret_code}")
+            a_db.acc_set_code_app(self.user_id_db, secret_code)
 
             # save main_window
             main_window = self.driver.current_window_handle
@@ -725,7 +726,7 @@ class Abrowser(object):
             self.driver.execute_script(f"arguments[0].setAttribute('value','{self.user_login}')", el_input_keyAccount)
             time.sleep(1)
             self.print("Enter value el_input_keySecret")
-            self.driver.execute_script(f"arguments[0].setAttribute('value','{el_span_code_app.text}')", el_input_keySecret)
+            self.driver.execute_script(f"arguments[0].setAttribute('value','{secret_code}')", el_input_keySecret)
             time.sleep(1)
             self.print("el_a_addKeyButton.click()")
             el_a_addKeyButton.click()
@@ -736,9 +737,11 @@ class Abrowser(object):
             except Exception as ex:
                 raise Exception("el_h3")
             
-            self.print(f"Code otp from app is {el_h3.text}")
+            otp_code = el_h3.text
+            self.print(f"Code otp from app is {otp_code}")
 
-            self.driver.switch_to_window(main_window)
+            self.driver.close()
+            self.driver.switch_to_window(self.driver.window_handles[0])
 
             #<input type="text" maxlength="6" required="" id="ch-auth-app-code-input"
             try:
@@ -751,8 +754,8 @@ class Abrowser(object):
             except Exception as ex:
                 raise Exception("el_btn_submit")
 
-            self.print(f"Enter code {el_h3.text} to el_app_code")
-            self.driver.execute_script(f"arguments[0].setAttribute('value','{el_h3.text}')", el_app_code)
+            self.print(f"Enter code {otp_code} to el_app_code")
+            self.driver.execute_script(f"arguments[0].setAttribute('value','{otp_code}')", el_app_code)
             time.sleep(1)
             self.print("el_btn_submit.click()")
             el_btn_submit.click()
@@ -779,7 +782,7 @@ class Abrowser(object):
                 time.sleep(3)
                 #<input id="enable-mfa-form-submit" class="a-button-input" type="submit" aria-labelledby="a-autoid-0-announce">
                 pass
-            pass
+            self.print("GOOD END WORK")
         except Exception as ex:
             self.print(ex)
             # self.print(self.driver.page_source)
