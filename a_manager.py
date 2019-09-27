@@ -2,12 +2,14 @@ import time
 import os
 import multiprocessing
 import asyncio
+import datetime
 import logging
 from a_browser import Abrowser
 import a_db
+sessin_data_log = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H-%M-%S")
 logging.basicConfig(level=logging.INFO,
                     format='(%(module)s) %(message)s',
-                    handlers=[logging.FileHandler("session.log", 'w+', 'utf-8')])
+                    handlers=[logging.FileHandler(f"session_{sessin_data_log}.log", 'a', 'utf-8')])
 logger = logging.getLogger("Log")
 
 def xprint(msg):

