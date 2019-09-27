@@ -2,9 +2,10 @@ import time
 import datetime
 from peewee import *
 import logging
+sessin_data_log = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H-%M-%S")
 logging.basicConfig(level=logging.INFO,
                     format='(%(module)s) %(message)s',
-                    handlers=[logging.FileHandler("session.log", 'w+', 'utf-8')])
+                    handlers=[logging.FileHandler(f"session_{sessin_data_log}.log", 'a', 'utf-8')])
 logger = logging.getLogger("Log")
 
 db = SqliteDatabase('a.db')
