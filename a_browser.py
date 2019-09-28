@@ -138,11 +138,11 @@ class Abrowser(object):
                     datetime_now = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S")
                     datetime_now = datetime.datetime.strptime(datetime_now, '%Y-%m-%dT%H:%M:%S')
                     diff_datetime = datetime_now - acc_datetime
-                    # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime}: different from now is {diff_datetime.seconds} seconds")
+                    # self.print(f"Acc with id {acc_id} and datetime {acc_datetime}: different from now is {diff_datetime.seconds} seconds")
                     if (diff_datetime.seconds / 60) > 5:
                         # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime}: different MORE than 3 minutes")
-                        a_db.acc_change_status(int(acc_id), "5 min waited")
-                        a_db.acc_stop_work(int(acc_id))
+                        a_db.acc_change_status(id_db, "5 min waited")
+                        a_db.acc_stop_work(id_db)
                         self.print(f"Acc id_db {id_db} with id {acc_id} end work by 5 min waited")
                         break
                     acc_password = d["password"]
@@ -177,8 +177,8 @@ class Abrowser(object):
                     # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime}: different from now is {diff_datetime.seconds} seconds")
                     if (diff_datetime.seconds / 60) > 5:
                         # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime}: different MORE than 3 minutes")
-                        a_db.acc_change_status(int(acc_id), "5 min waited")
-                        a_db.acc_stop_work(int(acc_id))
+                        a_db.acc_change_status(id_db, "5 min waited")
+                        a_db.acc_stop_work(id_db)
                         self.print(f"Acc id_db {id_db} with id {acc_id} end work by 5 min waited")
                         break
                     acc_verification_type= d["verification_type"]
@@ -219,8 +219,8 @@ class Abrowser(object):
                     # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime}: different from now is {diff_datetime.seconds} seconds")
                     if (diff_datetime.seconds / 60) > 5:
                         # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime}: different MORE than 3 minutes")
-                        a_db.acc_change_status(int(acc_id), "5 min waited")
-                        a_db.acc_stop_work(int(acc_id))
+                        a_db.acc_change_status(id_db, "5 min waited")
+                        a_db.acc_stop_work(id_db)
                         self.print(f"Acc id_db {id_db} with id {acc_id} end work by 5 min waited")
                         break
                     acc_verification_code = d["verification_code"]
