@@ -316,8 +316,9 @@ def session_now_minus():
     with db:
         try:
             session_now = Settings.get(Settings.key == "session_now")
-            session_now.value = f"{int(session_now.value)-1}"
-            session_now.save()
+            if int(session_now.value) > 0:
+                session_now.value = f"{int(session_now.value)-1}"
+                session_now.save()
             return int(session_now.value)
         except Exception as ex:
             xprint(ex)
