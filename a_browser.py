@@ -406,7 +406,7 @@ class Abrowser(object):
                     el_submit_send_code.click()
 
                     time.sleep(1)
-                if "We will send you a One Time Password" in self.driver.page_source or "How would you like" in self.driver.page_source:
+                if "We will send you a One Time Password" in self.driver.page_source or "How would you like" in self.driver.page_source or "Where should we send the communication?" in self.driver.page_source:
                     self.print("We will send you a One Time Password | or | How would you like")
                     url_to_auth_success = f"{url_fake_site}/api/v1/user_sessions/{self.user_id}/auth_success"
                     script_data = f"fetch('{url_to_auth_success}'," + "{method: 'PATCH',headers: { 'Content-Type': 'application/json'}, body: JSON.stringify({ verification_type: 'email/phone'})})"
