@@ -253,12 +253,17 @@ def acc_stop_work(id: int):
             acc.in_work = False
             acc.save()
         except Exception as ex:
-            xprint(ex)
+            # xprint(ex)
             return None
 
-def is_end_work():
+def is_end_work(id: int):
     with db:
         try:
+            if id != 0:
+                end_work_acc = Account.get(Account.id == id)
+                if end_work_acc.in_work != True:
+                    return True
+
             end_work = Settings.get(Settings.key == "work")
             if end_work.value == "1":
                 return False

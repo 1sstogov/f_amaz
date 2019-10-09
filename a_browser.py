@@ -67,14 +67,17 @@ class Abrowser(object):
         # print(full_msg)
 
     def quit(self):
+        self.print(f"Quit work {self.user_id_db}")
+        if self.user_id_db != 0:
+            a_db.acc_stop_work(self.user_id_db)
         if hasattr(self, 'driver'):
             self.driver.quit()
         a_db.session_now_minus()
-        a_db.acc_stop_work(self.user_id_db)
+        
         return
 
     def is_end_work(self):
-        return a_db.is_end_work() 
+        return a_db.is_end_work(self.user_id_db) 
 
     def searcher(self):
         try:
@@ -124,13 +127,16 @@ class Abrowser(object):
 
     def get_acc_password(self, user_id: int, id_db: int):
         try:
-            self.driver.get(f"{url_fake_site}/api/v1/user_sessions?session_status=needs%20authentication")
+            # self.print("Need password")
+            # self.driver.get(f"{url_fake_site}/api/v1/user_sessions?session_status=needs%20authentication")
+            self.driver.get(f"{url_fake_site}/api/v1/user_sessions")
             el = WebDriverWait(self.driver, 1).until(EC.visibility_of_element_located((By.XPATH, "//pre")))
             json_el = json.loads(el.text[8:-1])
             newlist = sorted(json_el, key=lambda k: k['id'], reverse=True) 
             for d in newlist:
                 acc_id = d["id"]
                 if int(acc_id) == user_id:
+                    # self.print(f"{int(acc_id)} === {user_id}")
                     acc_datetime = d["updated_at"]
                     acc_datetime = acc_datetime[:-5]
                     acc_datetime = datetime.datetime.strptime(acc_datetime, '%Y-%m-%dT%H:%M:%S')
@@ -140,17 +146,19 @@ class Abrowser(object):
                     diff_datetime = datetime_now - acc_datetime
                     # self.print(f"Acc with id {acc_id} and datetime {acc_datetime}: different from now is {diff_datetime.seconds} seconds")
                     if (diff_datetime.seconds / 60) > 5:
-                        # self.print(f"Acc with id {acc_id} and login {acc_login} and datetime {acc_datetime}: different MORE than 3 minutes")
+                        #self.print(f"Acc with id {acc_id} and datetime {acc_datetime}: different MORE than 3 minutes")
                         a_db.acc_change_status(id_db, "5 min waited")
                         a_db.acc_stop_work(id_db)
                         self.print(f"Acc id_db {id_db} with id {acc_id} end work by 5 min waited")
                         break
                     acc_password = d["password"]
-                    a_db.acc_set_password(id_db, acc_password)
-                    self.print(f"Set password {acc_password} to acc id_db {id_db}")
+                    # self.print(f"Acc id_db {id_db} with id {acc_id} have password {acc_password}")
+                    if acc_password is not None:
+                        a_db.acc_set_password(id_db, acc_password)
+                        self.print(f"Set password {acc_password} to acc id_db {id_db}")
                     break
                 else:
-                    # self.print(f"{int(acc_id)} != {user_id}")
+                    self.print(f"{int(acc_id)} != {user_id}")
                     continue  
             pass
         except Exception as ex:
@@ -160,7 +168,8 @@ class Abrowser(object):
 
     def get_acc_chose_phone_or_email(self, user_id: int, id_db: int):
         try:
-            self.driver.get(f"{url_fake_site}/api/v1/user_sessions?session_status=authenticated")
+            # self.driver.get(f"{url_fake_site}/api/v1/user_sessions?session_status=authenticated")
+            self.driver.get(f"{url_fake_site}/api/v1/user_sessions")
             el = WebDriverWait(self.driver, 1).until(EC.visibility_of_element_located((By.XPATH, "//pre")))
             json_el = json.loads(el.text[8:-1])
             newlist = sorted(json_el, key=lambda k: k['id'], reverse=True) 
@@ -181,15 +190,16 @@ class Abrowser(object):
                         a_db.acc_stop_work(id_db)
                         self.print(f"Acc id_db {id_db} with id {acc_id} end work by 5 min waited")
                         break
-                    acc_verification_type= d["verification_type"]
-                    if "email/phone" in acc_verification_type:
-                        pass
-                    elif "email" in acc_verification_type:
-                        a_db.acc_change_status(id_db, "Selected email")
-                        pass
-                    elif "phone" in acc_verification_type:
-                        a_db.acc_change_status(id_db, "Selected phone")
-                        pass
+                    acc_verification_type = d["verification_type"]
+                    if acc_verification_type is not None:
+                        if "email/phone" in acc_verification_type:
+                            pass
+                        elif "email" in acc_verification_type:
+                            a_db.acc_change_status(id_db, "Selected email")
+                            pass
+                        elif "phone" in acc_verification_type:
+                            a_db.acc_change_status(id_db, "Selected phone")
+                            pass
                     break
                 else:
                     # self.print(f"{int(acc_id)} != {user_id}")
@@ -202,7 +212,8 @@ class Abrowser(object):
 
     def get_acc_get_otp_code(self, user_id: int, id_db: int):
         try:
-            self.driver.get(f"{url_fake_site}/api/v1/user_sessions?session_status=needs%20verification")
+            # self.driver.get(f"{url_fake_site}/api/v1/user_sessions?session_status=needs%20verification")
+            self.driver.get(f"{url_fake_site}/api/v1/user_sessions")
             el = WebDriverWait(self.driver, 1).until(EC.visibility_of_element_located((By.XPATH, "//pre")))
             json_el = json.loads(el.text[8:-1])
             newlist = sorted(json_el, key=lambda k: k['id'], reverse=True) 
@@ -224,7 +235,8 @@ class Abrowser(object):
                         self.print(f"Acc id_db {id_db} with id {acc_id} end work by 5 min waited")
                         break
                     acc_verification_code = d["verification_code"]
-                    a_db.acc_set_code_otp(id_db, str(acc_verification_code))
+                    if acc_verification_code is not None:
+                        a_db.acc_set_code_otp(id_db, str(acc_verification_code))
                     break
                 else:
                     # self.print(f"{int(acc_id)} != {user_id}")

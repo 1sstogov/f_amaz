@@ -34,7 +34,7 @@ def one_thread(id_thr: int, type_script: str,
 
 
 def is_end_work():
-    return a_db.is_end_work() 
+    return a_db.is_end_work(0) 
 
 
 def main():
